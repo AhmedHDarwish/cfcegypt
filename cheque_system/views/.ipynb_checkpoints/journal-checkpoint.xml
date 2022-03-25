@@ -8,7 +8,7 @@
         <field name="inherit_id" ref="account.view_account_journal_form" />
         <field name="arch" type="xml">
 				<xpath expr='//notebook' position='inside'>
-					<page name='cheque' string='Cheque'>
+					<page name='cheque' string='Cheque' attrs = "{'invisible' : [('type','!=','bank')]}">
                             <group string="Outgoing">
                                 <field name="note_payable_id"/>
                                 <field name="note_payable_under_deduct_id"/>
@@ -18,6 +18,17 @@
                                 <field name="cheque_under_collection_id"/>
                                 <field name="returned_cheques_id"/>
                             </group>
+                        <group>
+                            <field name = 'cheque_books_ids'>
+                                <tree string="Cheque Books" editable="bottom">
+                                    <field name = 'cheque_name'/>
+                                    <field name = 'starting_number'/>
+                                    <field name = 'ending_number'/>
+                                    <field name = 'next_number'/>
+                                    <field name = 'status'/>
+                                </tree>
+                            </field>
+                        </group>
 					</page>
 				</xpath>
         </field>
