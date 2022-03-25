@@ -1,5 +1,16 @@
 <odoo>
     <data>
+    <record id="post_entries_cron" model="ir.cron">
+       <field name="name">Post Enteries Job</field>
+       <field name="model_id" ref="model_cheque_system_cheque_payment"/>
+       <field name="state">code</field>
+       <field name="code">model.post_entries()</field>
+       <field name="user_id" ref="base.user_root"/>
+       <field name='interval_number'>1</field>
+       <field name='interval_type'>days</field>
+       <field name="numbercall">-1</field>
+       <field name="doall" eval="False"/>
+   </record>
     <record id="cheque_system_tree_form" model="ir.ui.view">
         <field name="name">cheque.tree.view</field>
         <field name="model">cheque_system.cheque_payment</field>
@@ -23,6 +34,8 @@
                 <header attrs="{'invisible':[('type','not in',['outbound'])]}">
                         <button name="outbound_post" class="oe_highlight" attrs = "{'invisible' : [('outbound_status','!=','new')]}" string="Post" type="object" />
                     <button name="delivered" class="oe_highlight" attrs = "{'invisible' : [('outbound_status','!=','issued')]}" string="Delivered" type="object" />
+                    <button name="outbound_done" class="oe_highlight" attrs = "{'invisible' : [('outbound_status','!=','under_deduct')]}" string="Done" type="object" />
+                    <button name="outbound_return" class="oe_highlight" attrs = "{'invisible' : [('outbound_status','!=','under_deduct')]}" string="Returned" type="object" />
 
                     <field name="outbound_status" widget="statusbar" attrs = "{'invisible' : [('type','=','inbound')]}"/>
                     

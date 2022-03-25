@@ -94,7 +94,8 @@ class ChequePayment(models.Model):
     def post_entries(self):
         outgoing_cheques_to_be_posted = self.env['cheque_system.cheque_payment'].search([('type','=','outbound'),('outbound_status','in',('issued','handed')),('due_date','<=',fields.Date().today())])
         for cheque in outgoing_cheques_to_be_posted:
-            pass
+            cheque.to_be_posted_account_move_id.action_post()
+            cheque.outbound_status = 'under_deduct'
     def outbound_post(self):
         posted_move_id = self.create_account_move(debit_account = self.partner_id.property_account_payable_id.id,credit_account = self.journal_id.note_payable_id.id)
         posted_move_id.action_post()
@@ -104,6 +105,14 @@ class ChequePayment(models.Model):
         self.outbound_status = 'issued'
     def delivered(self):
         self.outbound_status = 'handed'
+    def outbound_done(self):
+        posted_move_id = self.create_account_move(debit_account = self.journal_id.note_payable_under_deduct_id.id,credit_account = self.journal_id.default_account_id.id)
+        posted_move_id.action_post()
+        self.outbound_status = 'done'
+    def outbound_return(self):
+        posted_move_id = self.create_account_move(debit_account = self.journal_id.note_payable_under_deduct_id.id,credit_account = self.partner_id.property_account_payable_id.id)
+        posted_move_id.action_post()
+        self.outbound_status = 'returned'
     #inbound logic
     inbound_status = fields.Selection([
         ('new', 'New'),
