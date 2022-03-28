@@ -35,13 +35,18 @@
                         <button name="outbound_post" class="oe_highlight" attrs = "{'invisible' : [('outbound_status','!=','new')]}" string="Post" type="object" />
                     <button name="delivered" class="oe_highlight" attrs = "{'invisible' : [('outbound_status','!=','issued')]}" string="Delivered" type="object" />
                     <button name="outbound_done" class="oe_highlight" attrs = "{'invisible' : [('outbound_status','!=','under_deduct')]}" string="Done" type="object" />
-                    <button name="outbound_return" class="oe_highlight" attrs = "{'invisible' : [('outbound_status','!=','under_deduct')]}" string="Returned" type="object" />
+                    <button name="outbound_return" class="oe_highlight" attrs = "{'invisible' : [('outbound_status','!=','issued')]}" string="Rejected" type="object" />
 
                     <field name="outbound_status" widget="statusbar" attrs = "{'invisible' : [('type','=','inbound')]}"/>
                     
                 </header>
                 <header attrs="{'invisible':[('type','not in',['inbound'])]}">
                     <field name="inbound_status" widget="statusbar" attrs = "{'invisible' : [('type','=','outbound')]}"/>
+                    <button name="inbound_post" class="oe_highlight" attrs = "{'invisible' : [('inbound_status','!=','new')]}" string="Post" type="object" />
+                    <button name="inbound_validate" class="oe_highlight" attrs = "{'invisible' : [('inbound_status','!=','handed')]}" string="Validate" type="object" />
+                    <button name="inbound_reject" class="oe_highlight" attrs = "{'invisible' : [('inbound_status','!=','handed')]}" string="Reject" type="object" />
+                    <button name="inbound_cancel" class="oe_highlight" attrs = "{'invisible' : [('inbound_status','!=','handed')]}" string="Cancel" type="object" />
+                    <button name="inbound_recollect" class="oe_highlight" attrs = "{'invisible' : [('inbound_status','!=','rejected')]}" string="Recollect" type="object" />
                 </header>
                 <sheet>
                     <div name="button_box" class="oe_button_box">
@@ -67,6 +72,10 @@
                         <group attrs="{'invisible':[('type','not in',['outbound'])]}">
                             <field name="cheque_book_id" attrs="{'readonly':[('state','not in',['draft'])],'required' : [('type','in',['outbound'])]}" domain = "[('status','=','in_use'),('journal_id','=',journal_id)]"/>
                             <field name="cheque_number" />
+                        </group>
+                         <group attrs="{'invisible':[('type','in',['outbound'])]}">
+                            <field name="inbound_cheque_number" attrs="{'readonly':[('state','not in',['draft'])],'required' : [('type','not in',['outbound'])]}"/>
+                            <field name="bank_id" attrs="{'readonly':[('state','not in',['draft'])],'required' : [('type','not in',['outbound'])]}"/>
                         </group>
                     </group>
                 </sheet>

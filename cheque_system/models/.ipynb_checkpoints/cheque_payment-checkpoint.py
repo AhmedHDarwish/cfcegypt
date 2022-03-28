@@ -17,6 +17,7 @@ class ChequePayment(models.Model):
     ref = fields.Char('Beneficiary')
     journal_id = fields.Many2one('account.journal',domain = "[('type','=','bank')]",required=1)
     company_id = fields.Many2one('res.company',string='company',default=lambda self: self.env.company)
+    to_be_posted_account_move_id = fields.Many2one('account.move')
     #state
     state = fields.Selection([('draft', 'Draft'), ('confirm', 'Confirm')], string="State", default='draft',compute = '_compute_state',copy = False) #this field for ui purposes
     @api.depends('outbound_status','inbound_status','type')
@@ -76,7 +77,7 @@ class ChequePayment(models.Model):
     #outbound logic
     cheque_book_id = fields.Many2one('cheque_system.cheque_book')
     cheque_number = fields.Char(readonly = True,compute = '_get_cheque_number',store = True)
-    to_be_posted_account_move_id = fields.Many2one('account.move')
+    
     @api.depends('cheque_book_id')
     def _get_cheque_number(self):
         for rec in self:
@@ -87,15 +88,19 @@ class ChequePayment(models.Model):
         ('new', 'New'),
         ('issued', 'Issued'),
         ('handed', 'Handed'),
+        ('rejected', 'Rejected'),
         ('under_deduct', 'Under Deduct'),
         ('done', 'Done'),
-        ('returned', 'Returned'),
+       
     ], string='Status', default='new', required=True, readonly=True,copy = False)  
     def post_entries(self):
         outgoing_cheques_to_be_posted = self.env['cheque_system.cheque_payment'].search([('type','=','outbound'),('outbound_status','in',('issued','handed')),('due_date','<=',fields.Date().today())])
         for cheque in outgoing_cheques_to_be_posted:
             cheque.to_be_posted_account_move_id.action_post()
             cheque.outbound_status = 'under_deduct'
+        incoming_cheques_to_be_posted = self.env['cheque_system.cheque_payment'].search([('type','=','inbound'),('inbound_status','not in',('new','cancel')),('due_date','<=',fields.Date().today())])
+        for cheque in incoming_cheques_to_be_posted:
+            cheque.to_be_posted_account_move_id.action_post()
     def outbound_post(self):
         posted_move_id = self.create_account_move(debit_account = self.partner_id.property_account_payable_id.id,credit_account = self.journal_id.note_payable_id.id)
         posted_move_id.action_post()
@@ -112,19 +117,45 @@ class ChequePayment(models.Model):
     def outbound_return(self):
         posted_move_id = self.create_account_move(debit_account = self.journal_id.note_payable_under_deduct_id.id,credit_account = self.partner_id.property_account_payable_id.id)
         posted_move_id.action_post()
-        self.outbound_status = 'returned'
+        self.outbound_status = 'rejected'
     #inbound logic
+    inbound_cheque_number = fields.Char(string = 'Cheque Number')
+    bank_id = fields.Many2one('res.bank')
     inbound_status = fields.Selection([
         ('new', 'New'),
         ('handed', 'Handed'),
-        ('under_collection', 'Under Collection'),
         ('paid', 'Paid'),
+        ('under_collection', 'Under Collection'),
         ('rejected', 'Rejected'),
         ('re_under_collection', 'Re Under Collection'),
         ('replacment', 'Replacmnet'),
+        ('cancel', 'Cancel'),
     ], string='Status', default='new', required=True, readonly=True,copy = False)  
 
-    
+    def inbound_post(self):
+        posted_move_id = self.create_account_move(debit_account = self.journal_id.note_recievable_id.id,credit_account = self.partner_id.property_account_receivable_id.id)
+        posted_move_id.action_post()
+        to_be_posted_move_id = self.create_account_move(debit_account = self.journal_id.cheque_under_collection_id.id,credit_account = self.journal_id.note_recievable_id.id)
+        self.to_be_posted_account_move_id = to_be_posted_move_id.id
+        self.inbound_status = 'handed'
+    def inbound_validate(self):
+        posted_move_id = self.create_account_move(debit_account = self.journal_id.default_account_id.id,credit_account = self.journal_id.cheque_under_collection_id.id)
+        posted_move_id.action_post()
+        self.inbound_status = 'paid'
                 
-            
-                
+    def inbound_reject(self):
+        posted_move_id = self.create_account_move(debit_account = self.partner_id.property_account_receivable_id.id,credit_account = self.journal_id.cheque_under_collection_id.id)
+        posted_move_id.action_post()
+        self.inbound_status = 'rejected'    
+    def inbound_recollect(self):
+        posted_move_id = self.create_account_move(debit_account = self.journal_id.cheque_under_collection_id.id,credit_account = self.journal_id.returned_cheques_id.id)
+        posted_move_id.action_post()
+        self.inbound_status = 're_under_collection'      
+    def inbound_replace(self):
+        posted_move_id = self.create_account_move(debit_account = self.journal_id.default_account_id.id,credit_account = self.journal_id.cheque_under_collection_id.id)
+        posted_move_id.action_post()
+        self.inbound_status = 'replacment'  
+    def inbound_cancel(self):
+        posted_move_id = self.create_account_move(debit_account = self.partner_id.property_account_receivable_id.id,credit_account = self.journal_id.cheque_under_collection_id.id)
+        posted_move_id.action_post()
+        self.inbound_status = 'cancel'  
