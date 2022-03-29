@@ -35,7 +35,7 @@
                         <button name="outbound_post" class="oe_highlight" attrs = "{'invisible' : [('outbound_status','!=','new')]}" string="Post" type="object" />
                     <button name="delivered" class="oe_highlight" attrs = "{'invisible' : [('outbound_status','!=','issued')]}" string="Delivered" type="object" />
                     <button name="outbound_done" class="oe_highlight" attrs = "{'invisible' : [('outbound_status','!=','under_deduct')]}" string="Done" type="object" />
-                    <button name="outbound_return" class="oe_highlight" attrs = "{'invisible' : [('outbound_status','!=','issued')]}" string="Rejected" type="object" />
+                    <button name="outbound_return" class="oe_highlight" attrs = "{'invisible' : [('outbound_status','!=','under_deduct')]}" string="Rejected" type="object" />
 
                     <field name="outbound_status" widget="statusbar" attrs = "{'invisible' : [('type','=','inbound')]}"/>
                     

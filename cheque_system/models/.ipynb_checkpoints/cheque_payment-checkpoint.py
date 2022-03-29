@@ -96,15 +96,18 @@ class ChequePayment(models.Model):
     def post_entries(self):
         outgoing_cheques_to_be_posted = self.env['cheque_system.cheque_payment'].search([('type','=','outbound'),('outbound_status','in',('issued','handed')),('due_date','<=',fields.Date().today())])
         for cheque in outgoing_cheques_to_be_posted:
-            cheque.to_be_posted_account_move_id.action_post()
+            if cheque.to_be_posted_account_move_id.state == 'draft':
+                cheque.to_be_posted_account_move_id.action_post()
             cheque.outbound_status = 'under_deduct'
         incoming_cheques_to_be_posted = self.env['cheque_system.cheque_payment'].search([('type','=','inbound'),('inbound_status','not in',('new','cancel')),('due_date','<=',fields.Date().today())])
         for cheque in incoming_cheques_to_be_posted:
-            cheque.to_be_posted_account_move_id.action_post()
+            if cheque.to_be_posted_account_move_id.state == 'draft':
+                cheque.to_be_posted_account_move_id.action_post()
     def outbound_post(self):
         posted_move_id = self.create_account_move(debit_account = self.partner_id.property_account_payable_id.id,credit_account = self.journal_id.note_payable_id.id)
         posted_move_id.action_post()
         to_be_posted_move_id = self.create_account_move(debit_account = self.journal_id.note_payable_id.id,credit_account = self.journal_id.note_payable_under_deduct_id.id)
+        to_be_posted_move_id.date = self.due_date
         self.to_be_posted_account_move_id = to_be_posted_move_id.id
         self.cheque_book_id.related_cheques_ids = [(4,self.id)]
         self.outbound_status = 'issued'
@@ -136,6 +139,7 @@ class ChequePayment(models.Model):
         posted_move_id = self.create_account_move(debit_account = self.journal_id.note_recievable_id.id,credit_account = self.partner_id.property_account_receivable_id.id)
         posted_move_id.action_post()
         to_be_posted_move_id = self.create_account_move(debit_account = self.journal_id.cheque_under_collection_id.id,credit_account = self.journal_id.note_recievable_id.id)
+        to_be_posted_move_id.date = self.due_date
         self.to_be_posted_account_move_id = to_be_posted_move_id.id
         self.inbound_status = 'handed'
     def inbound_validate(self):
