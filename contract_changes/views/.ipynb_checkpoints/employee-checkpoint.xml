@@ -1,0 +1,22 @@
+<odoo>
+  <data>
+    <record model="ir.ui.view" id="employee_changes">
+      <field name="name">employee changes</field>
+      <field name="model">hr.employee</field>
+       <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr='//field[@name="parent_id"]' position="after">
+                    <field name='has_social_insurance'/>
+                    <field name='social_insurance' attrs="{'invisible':[('has_social_insurance','=',False)]}"/>
+                    <field name='has_medical_insurance'/>
+                    <field name='employee_pays' attrs="{'invisible':[('has_medical_insurance','=',False)]}"/>
+                    <label for="medical_insurance" attrs="{'invisible':['|',('has_medical_insurance','=',False),('employee_pays','=',False)]}"/>
+                    <div class="o_row" name="medical_insurance"  attrs="{'invisible':['|',('has_medical_insurance','=',False),('employee_pays','=',False)]}">
+                        <field name="medical_insurance" nolabel="1"/>
+                        <span>/ month</span>
+                    </div>
+            </xpath>
+        </field>
+    </record>
+  </data>
+</odoo>

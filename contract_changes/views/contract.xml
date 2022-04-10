@@ -1,0 +1,23 @@
+<odoo>
+  <data>
+    <record model="ir.ui.view" id="contract_changes">
+      <field name="name">contract changes</field>
+      <field name="model">hr.contract</field>
+       <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr='//group[@name="salary_and_advantages"]' position="inside">
+                    <label for="transportaion"/>
+                    <div class="o_row" name="transportaion">
+                        <field name="transportaion" nolabel="1"/>
+                        <span>/ month</span>
+                    </div>
+                    <label for="other_allowances"/>
+                    <div class="o_row" name="other_allowances">
+                        <field name="other_allowances" nolabel="1"/>
+                        <span>/ month</span>
+                    </div>
+            </xpath>
+        </field>
+    </record>
+  </data>
+</odoo>
