@@ -103,6 +103,7 @@ class ChequePayment(models.Model):
         for cheque in incoming_cheques_to_be_posted:
             if cheque.to_be_posted_account_move_id.state == 'draft':
                 cheque.to_be_posted_account_move_id.action_post()
+            cheque.inbound_status = 'under_collection'
     def outbound_post(self):
         posted_move_id = self.create_account_move(debit_account = self.partner_id.property_account_payable_id.id,credit_account = self.journal_id.note_payable_id.id)
         posted_move_id.action_post()
@@ -127,8 +128,8 @@ class ChequePayment(models.Model):
     inbound_status = fields.Selection([
         ('new', 'New'),
         ('handed', 'Handed'),
-        ('paid', 'Paid'),
         ('under_collection', 'Under Collection'),
+        ('paid', 'Paid'),
         ('rejected', 'Rejected'),
         ('re_under_collection', 'Re Under Collection'),
         ('replacment', 'Replacmnet'),
