@@ -21,7 +21,7 @@ class HrPayrollStructure(models.Model):
         return self.env.ref('hr_payroll_community.structure_base', False)
 
     name = fields.Char(required=True)
-    code = fields.Char(string='Reference', required=True)
+    code = fields.Char(string='Reference', required=True,default = '/')
     company_id = fields.Many2one('res.company', string='Company', required=True,
         copy=False, default=lambda self: self.env['res.company']._company_default_get())
     note = fields.Text(string='Description')
