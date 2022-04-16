@@ -43,9 +43,9 @@
                 <header attrs="{'invisible':[('type','not in',['inbound'])]}">
                     <field name="inbound_status" widget="statusbar" attrs = "{'invisible' : [('type','=','outbound')]}"/>
                     <button name="inbound_post" class="oe_highlight" attrs = "{'invisible' : [('inbound_status','!=','new')]}" string="Post" type="object" />
-                    <button name="inbound_validate" class="oe_highlight" attrs = "{'invisible' : [('inbound_status','not in',('handed','re_under_collection'))]}" string="Validate" type="object" />
-                    <button name="inbound_reject" class="oe_highlight" attrs = "{'invisible' : [('inbound_status','not in',('handed','re_under_collection'))]}" string="Reject" type="object" />
-                    <button name="inbound_cancel" class="oe_highlight" attrs = "{'invisible' : [('inbound_status','not in',('handed','re_under_collection'))]}" string="Cancel" type="object" />
+                    <button name="inbound_validate" class="oe_highlight" attrs = "{'invisible' : [('inbound_status','not in',('handed','re_under_collection','under_collection'))]}" string="Validate" type="object" />
+                    <button name="inbound_reject" class="oe_highlight" attrs = "{'invisible' : [('inbound_status','not in',('handed','re_under_collection','under_collection'))]}" string="Reject" type="object" />
+                    <button name="inbound_cancel" class="oe_highlight" attrs = "{'invisible' : [('inbound_status','not in',('handed','re_under_collection','under_collection'))]}" string="Cancel" type="object" />
                     <button name="inbound_recollect" class="oe_highlight" attrs = "{'invisible' : [('inbound_status','!=','rejected')]}" string="Recollect" type="object" />
                 </header>
                 <sheet>
