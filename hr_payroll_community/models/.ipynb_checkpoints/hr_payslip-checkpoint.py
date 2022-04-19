@@ -626,18 +626,18 @@ class ResourceMixin(models.AbstractModel):
         # in order to compute the total hours on the first and last days
         from_full = from_datetime - timedelta(days=1)
         to_full = to_datetime + timedelta(days=1)
-        intervals = calendar._attendance_intervals(from_full, to_full, resource)
+        intervals = calendar._attendance_intervals_batch(from_full, to_full, resource)
         day_total = defaultdict(float)
-        for start, stop, meta in intervals:
+        for start, stop, meta in intervals[resource.id]:
             day_total[start.date()] += (stop - start).total_seconds() / 3600
 
         # actual hours per day
         if compute_leaves:
-            intervals = calendar._work_intervals(from_datetime, to_datetime, resource, domain)
+            intervals = calendar._work_intervals_batch(from_datetime, to_datetime, resource, domain)
         else:
-            intervals = calendar._attendance_intervals(from_datetime, to_datetime, resource)
+            intervals = calendar._attendance_intervals_batch(from_datetime, to_datetime, resource)
         day_hours = defaultdict(float)
-        for start, stop, meta in intervals:
+        for start, stop, meta in intervals[resource.id]:
             day_hours[start.date()] += (stop - start).total_seconds() / 3600
 
         # compute number of days as quarters
