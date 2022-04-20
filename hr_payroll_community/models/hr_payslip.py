@@ -165,6 +165,7 @@ class HrPayslip(models.Model):
 
     @api.model
     def get_worked_day_lines(self, contracts, date_from, date_to):
+
         """
         @param contract: Browse record of contracts
         @return: returns a list of dict containing the input that should be applied for the given contract between date_from and date_to
@@ -215,7 +216,6 @@ class HrPayslip(models.Model):
             res.append(attendances)
             res.extend(leaves.values())
         return res
-
     @api.model
     def get_inputs(self, contracts, date_from, date_to):
         res = []
@@ -224,7 +224,6 @@ class HrPayslip(models.Model):
         rule_ids = self.env['hr.payroll.structure'].browse(structure_ids).get_all_rules()
         sorted_rule_ids = [id for id, sequence in sorted(rule_ids, key=lambda x: x[1])]
         inputs = self.env['hr.salary.rule'].browse(sorted_rule_ids).mapped('input_ids')
-
         for contract in contracts:
             for input in inputs:
                 input_data = {
