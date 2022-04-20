@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- <odoo> -->
+<odoo>
 	<!--Adding a salary rule for loan-->
-<!-- 	<data noupdate="0"> -->
-<!-- 
+	<data noupdate="0">
+        <record id="struct" model="hr.payroll.structure">
+            <field name="code">test</field>
+            <field name="name">test</field>
+            <field name="type_id" ref="hr_contract.structure_type_employee"/>
+        </record>
 		<record id="hr_rule_loan" model="hr.salary.rule">
             <field name="code">LO</field>
             <field name="name">Loan</field>
@@ -11,14 +15,14 @@
             <field name="amount_python_compute">result = inputs.LO and - (inputs.LO.amount)</field>
             <field name="appears_on_payslip" eval="True"/>
             <field name="sequence" eval="190"/>
+            <field name = 'struct_id' ref = 'struct'/>
         </record>
 
         <record id="hr_rule_input_loan" model="hr.rule.input">
             <field name="code">LO</field>
             <field name="name">Loan</field>
             <field name="input_id" ref="hr_rule_loan"/>
-        </record> -->
+        </record>
 
-<!-- 	</data> -->
-<!-- </odoo>
- -->
+	</data>
+</odoo>

@@ -33,7 +33,7 @@
     'live_test_url': 'https://youtu.be/LdUvXDMkd4Q',
     'website': "https://www.openhrms.com",
     'depends': [
-        'base', 'hr_payroll_community','hr_payroll', 'hr', 'account',
+        'base', 'hr_payroll_community','hr_payroll', 'hr', 'account','hr_contract'
     ],
     'data': [
         'security/ir.model.access.csv',

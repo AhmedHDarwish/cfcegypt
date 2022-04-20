@@ -36,9 +36,9 @@ class HrPayslip(models.Model):
                 return
             self.contract_id = self.env['hr.contract'].browse(contract_ids[0])
 
-        if not self.contract_id.struct_id:
-            return
-        self.struct_id = self.contract_id.struct_id
+#         if not self.contract_id.struct_id:
+#             return
+#         self.struct_id = self.contract_id.struct_id
 
         # computation of the salary input
         contracts = self.env['hr.contract'].browse(contract_ids)
