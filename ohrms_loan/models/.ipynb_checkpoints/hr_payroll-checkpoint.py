@@ -5,7 +5,9 @@ from odoo import models, fields, api, tools, _
 from datetime import datetime
 
 from odoo.exceptions import UserError, ValidationError
-
+class HrPayslipInput(models.Model):
+    _inherit = 'hr.payslip.run'
+    company_id = fields.Many2one('res.company')
 class HrPayslipInput(models.Model):
     _inherit = 'hr.payslip.input'
 

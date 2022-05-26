@@ -63,7 +63,34 @@ class HrLoan(models.Model):
         ('refuse', 'Refused'),
         ('cancel', 'Canceled'),
     ], string="State", default='draft', track_visibility='onchange', copy=False, )
+    journal_id = fields.Many2one('account.journal',domain = "[('type','in',['bank','cash'])]",required=1)
+    account_id = fields.Many2one('account.account',required=1)
+    def get_move_line(self, account,field_name):
+        return {
+            'account_id': account,
+            field_name: self.loan_amount,
+            'date': fields.Date.today(),
+            'date_maturity': self.loan_lines[-1].date,
+        }
+    def get_move_vals(self, debit_line, credit_line):
+        return {
+            'date': fields.Date.today(),
+            'journal_id': self.journal_id.id,
+            'ref': self.name,
+            'line_ids': [(0, 0, debit_line),
+                         (0, 0, credit_line)]
+        }
+    def create_account_move(self,debit_account,credit_account):
+        move = self.env['account.move']
 
+        move_line_vals_debit = self.get_move_line(debit_account,'debit')
+        move_line_vals_credit = self.get_move_line(credit_account,'credit')
+
+        #create move and post it
+        move_vals = self.get_move_vals(
+            move_line_vals_debit, move_line_vals_credit)
+        move_id = move.create(move_vals)
+        return move_id
     @api.model
     def create(self, values):
         loan_count = self.env['hr.loan'].search_count(
@@ -109,6 +136,10 @@ class HrLoan(models.Model):
                 raise ValidationError(_("Please Compute installment"))
             else:
                 self.write({'state': 'approve'})
+                debit_account = self.account_id.id
+                credit_account = self.journal_id.default_account_id.id
+                move = self.create_account_move(debit_account = debit_account,credit_account = credit_account)
+                move.action_post()
 
     def unlink(self):
         for loan in self:

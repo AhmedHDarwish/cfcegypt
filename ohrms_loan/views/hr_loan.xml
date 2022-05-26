@@ -49,6 +49,9 @@
                         <field name="payment_date" attrs="{'readonly':[('state','=','approve')]}"/>
                         <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company"/>
                         <field name="currency_id" options="{'no_create': True}" groups="base.group_multi_company"/>
+                        <field name="journal_id"/>
+                        <field name="account_id"/>
+
                     </group>
                     <notebook>
                         <page string="Installments">

@@ -37,9 +37,9 @@
             </xpath>
             <xpath expr = '//field[@name = "contract_type_id"]' position = 'after'>
                     <field name = 'transportation_type'/>
-                    <field name="transportaion_amount" attrs = "{'invisible' : [('transportation_type','!=','cash')]}"/>
+                    <field name="transportaion_amount"/>
                     <field name = 'housing_type'/>
-                    <field name="housing_amount" attrs = "{'invisible' : [('housing_type','!=','cash')]}"/>
+                    <field name="housing_amount"/>
             </xpath>
             <xpath expr = '//notebook' position = 'inside'>
                 <page string = 'Medical' name = 'medical'>

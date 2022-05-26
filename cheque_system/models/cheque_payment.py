@@ -5,6 +5,7 @@ from odoo.exceptions import UserError
 
 class ChequePayment(models.Model):
     _name = "cheque_system.cheque_payment"
+
     currency_id = fields.Many2one('res.currency', string='Currency')
     name = fields.Char(copy = False)
     descreption = fields.Char()
@@ -47,11 +48,17 @@ class ChequePayment(models.Model):
     def get_partner_id_for_entry_lines(self,account):
         return self.partner_id.id
     def get_move_line(self, account,field_name):
+        amount = self.currency_id._convert(
+            self.amount,
+            self.company_id.currency_id,
+            self.company_id,
+            self.date,
+        )
         return {
             'cheque_id': self.id,
             'partner_id': self.get_partner_id_for_entry_lines(account),
             'account_id': account,
-            field_name: self.amount,
+            field_name: amount,
             'name': self.descreption,
             'date': fields.Date.today(),
             'date_maturity': self.due_date,
@@ -70,7 +77,6 @@ class ChequePayment(models.Model):
         move = self.env['account.move']
 
         self.check_payment_amount()  # amount must be positive
-
         move_line_vals_debit = self.get_move_line(debit_account,'debit')
         move_line_vals_credit = self.get_move_line(credit_account,'credit')
 
@@ -159,7 +165,7 @@ class ChequePayment(models.Model):
         self.inbound_status = 'paid'
                 
     def inbound_reject(self):
-        posted_move_id = self.create_account_move(debit_account = self.partner_id.property_account_receivable_id.id,credit_account = self.journal_id.cheque_under_collection_id.id)
+        posted_move_id = self.create_account_move(debit_account = self.journal_id.returned_cheques_id.id,credit_account = self.journal_id.cheque_under_collection_id.id)
         posted_move_id.action_post()
         self.inbound_status = 'rejected'    
     def inbound_recollect(self):
@@ -171,6 +177,6 @@ class ChequePayment(models.Model):
         posted_move_id.action_post()
         self.inbound_status = 'replacment'  
     def inbound_cancel(self):
-        posted_move_id = self.create_account_move(debit_account = self.partner_id.property_account_receivable_id.id,credit_account = self.journal_id.cheque_under_collection_id.id)
+        posted_move_id = self.create_account_move(debit_account = self.partner_id.property_account_receivable_id.id,credit_account = self.journal_id.returned_cheques_id.id)
         posted_move_id.action_post()
         self.inbound_status = 'cancel'  
