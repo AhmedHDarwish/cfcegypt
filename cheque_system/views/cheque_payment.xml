@@ -67,8 +67,8 @@
                             <field name="journal_id" options="{'no_create':1,'no_create_edit':1}" attrs="{'readonly':[('state','not in',['draft'])]}" />
                         </group>
                         <group>
-                            <field name="date" attrs="{'readonly':[('state','not in',['draft'])]}" />
-                            <field name="due_date" attrs="{'readonly':[('state','not in',['draft'])]}" />
+                            <field name="date" attrs="{'readonly':[('state','not in',['draft'])]}" required = '1'/>
+                            <field name="due_date" attrs="{'readonly':[('state','not in',['draft'])]}" required = '1'/>
                             <field name="descreption"  />
                         </group>
                         <group attrs="{'invisible':[('type','not in',['outbound'])]}">
