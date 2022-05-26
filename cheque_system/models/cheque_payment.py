@@ -6,7 +6,8 @@ from odoo.exceptions import UserError
 class ChequePayment(models.Model):
     _name = "cheque_system.cheque_payment"
     currency_id = fields.Many2one('res.currency', string='Currency')
-    name = fields.Char(required=1)
+    name = fields.Char(copy = False)
+    descreption = fields.Char()
     amount = fields.Monetary(currency_field='currency_id',required=1)
     type = fields.Selection([
         ('outbound', 'Send'),
@@ -18,8 +19,12 @@ class ChequePayment(models.Model):
     journal_id = fields.Many2one('account.journal',domain = "[('type','=','bank')]",required=1)
     company_id = fields.Many2one('res.company',string='company',default=lambda self: self.env.company)
     to_be_posted_account_move_id = fields.Many2one('account.move')
+    @api.model
+    def create(self, vals):
+        vals['name'] = self.env['ir.sequence'].next_by_code('pdc.payment') or 'New'
+        return super().create(vals)
     #state
-    state = fields.Selection([('draft', 'Draft'), ('confirm', 'Confirm')], string="State", default='draft',compute = '_compute_state',copy = False) #this field for ui purposes
+    state = fields.Selection([('draft', 'Draft'), ('confirm', 'Confirm')], string="State", default='draft',compute = '_compute_state',copy = False,store = True) #this field for ui purposes
     @api.depends('outbound_status','inbound_status','type')
     def _compute_state(self):
         for rec in self:
@@ -47,7 +52,7 @@ class ChequePayment(models.Model):
             'partner_id': self.get_partner_id_for_entry_lines(account),
             'account_id': account,
             field_name: self.amount,
-            'ref': self.ref,
+            'name': self.descreption,
             'date': fields.Date.today(),
             'date_maturity': self.due_date,
         }
@@ -57,7 +62,7 @@ class ChequePayment(models.Model):
             'date': fields.Date.today(),
             'journal_id': self.journal_id.id,
             'partner_id': self.partner_id.id,
-            'ref': self.ref,
+            'ref': self.name,
             'line_ids': [(0, 0, debit_line),
                          (0, 0, credit_line)]
         }
@@ -76,13 +81,18 @@ class ChequePayment(models.Model):
         return move_id
     #outbound logic
     cheque_book_id = fields.Many2one('cheque_system.cheque_book')
-    cheque_number = fields.Char(readonly = True,compute = '_get_cheque_number',store = True)
+    cheque_number = fields.Char(readonly = False,store = True)
     
-    @api.depends('cheque_book_id')
+    @api.constrains('cheque_book_id','state','outbound','cheque_number','journal_id')
     def _get_cheque_number(self):
         for rec in self:
-            if rec.state != 'confirm':
-                rec.cheque_number = rec.cheque_book_id.next_number
+            if rec.type == 'outbound':
+                if rec.cheque_book_id.starting_number > int(rec.cheque_number) or rec.cheque_book_id.ending_number < int(rec.cheque_number):
+                    raise UserError('Check Number Out of range') 
+            if rec.state == 'confirm':
+                posted_cheques_with_same_cheque_number = self.env['cheque_system.cheque_payment'].search([('state','=','confirm'),('type','=','outbound'),('cheque_book_id','=',rec.cheque_book_id.id),('cheque_number','=',rec.cheque_number),('id','!=',rec.id)])
+                if len(posted_cheques_with_same_cheque_number) != 0:
+                    raise UserError('Cheque Number Used Before')
     due_date = fields.Date()
     outbound_status = fields.Selection([
         ('new', 'New'),

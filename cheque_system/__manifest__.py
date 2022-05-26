@@ -27,5 +27,7 @@
         'security/ir.model.access.csv',
         'views/journal.xml',
         'views/cheque_payment.xml',
+        'views/sequence.xml',
+
     ],
 }

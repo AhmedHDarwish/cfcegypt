@@ -31,7 +31,8 @@ class ChequeBook(models.Model):
     @api.constrains('status')
     def check_status(self):
         for rec in self:
-            if (rec.status == 'used' and rec.next_number != rec.ending_number) or (rec.status != 'used' and rec.next_number == rec.ending_number ):
+            is_all_cheques_used = len(rec.related_cheques_ids) == (rec.ending_number - rec.starting_number)
+            if (rec.status == 'used' and not(is_all_cheques_used)) or (rec.status != 'used' and  is_all_cheques_used):
                 raise UserError('You cant set status to this value')
                 
             

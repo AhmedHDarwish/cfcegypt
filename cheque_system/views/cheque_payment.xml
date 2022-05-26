@@ -1,5 +1,6 @@
 <odoo>
     <data>
+
     <record id="post_entries_cron" model="ir.cron">
        <field name="name">Post Enteries Job</field>
        <field name="model_id" ref="model_cheque_system_cheque_payment"/>
@@ -45,7 +46,7 @@
                     <button name="inbound_post" class="oe_highlight" attrs = "{'invisible' : [('inbound_status','!=','new')]}" string="Post" type="object" />
                     <button name="inbound_validate" class="oe_highlight" attrs = "{'invisible' : [('inbound_status','not in',('handed','re_under_collection','under_collection'))]}" string="Validate" type="object" />
                     <button name="inbound_reject" class="oe_highlight" attrs = "{'invisible' : [('inbound_status','not in',('handed','re_under_collection','under_collection'))]}" string="Reject" type="object" />
-                    <button name="inbound_cancel" class="oe_highlight" attrs = "{'invisible' : [('inbound_status','not in',('handed','re_under_collection','under_collection'))]}" string="Cancel" type="object" />
+                    <button name="inbound_cancel" class="oe_highlight" attrs = "{'invisible' : [('inbound_status','not in',('handed','re_under_collection','under_collection','rejected'))]}" string="Cancel" type="object" />
                     <button name="inbound_recollect" class="oe_highlight" attrs = "{'invisible' : [('inbound_status','!=','rejected')]}" string="Recollect" type="object" />
                 </header>
                 <sheet>
@@ -55,7 +56,7 @@
 
                     <group>
                         <group>
-                            <field name="name" />
+                            <field name="name" readonly = '1'/>
                             <field name = 'state' invisible = '1'/>
                             <field name="type" attrs="{'readonly':[('state','not in',['draft'])]}" widget="radio" />
                             <field name="currency_id" invisible="1" />
@@ -68,14 +69,15 @@
                         <group>
                             <field name="date" attrs="{'readonly':[('state','not in',['draft'])]}" />
                             <field name="due_date" attrs="{'readonly':[('state','not in',['draft'])]}" />
+                            <field name="descreption"  />
                         </group>
                         <group attrs="{'invisible':[('type','not in',['outbound'])]}">
                             <field name="cheque_book_id" attrs="{'readonly':[('state','not in',['draft'])],'required' : [('type','in',['outbound'])]}" domain = "[('status','=','in_use'),('journal_id','=',journal_id)]"/>
-                            <field name="cheque_number" />
+                            <field name="cheque_number" attrs="{'readonly':[('state','not in',['draft'])]}"/>
                         </group>
                          <group attrs="{'invisible':[('type','in',['outbound'])]}">
                             <field name="inbound_cheque_number" attrs="{'readonly':[('state','not in',['draft'])],'required' : [('type','not in',['outbound'])]}"/>
-                            <field name="bank_id" attrs="{'readonly':[('state','not in',['draft'])],'required' : [('type','not in',['outbound'])]}"/>
+                            <field name="bank_id" attrs="{'readonly':[('state','not in',['draft'])]}"/>
                         </group>
                     </group>
                 </sheet>
