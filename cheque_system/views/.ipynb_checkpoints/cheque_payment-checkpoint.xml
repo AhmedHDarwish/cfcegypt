@@ -106,6 +106,6 @@
     </record>
     <!-- PDC Menu -->
 
-    <menuitem id="menu_pdc_payment" name="PDC payment" groups="account.group_account_invoice"                                                   parent="account.menu_finance_entries" sequence="25" action="cheque_system_payment_menu_action" />
+    <menuitem id="menu_pdc_payment" name="PDC payment"                                                 parent="account_accountant.menu_accounting" sequence="25" action="cheque_system_payment_menu_action" />
     </data>
 </odoo>
