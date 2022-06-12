@@ -1,0 +1,111 @@
+<odoo>
+    <data>
+
+    <record id="post_entries_cron" model="ir.cron">
+       <field name="name">Post Enteries Job</field>
+       <field name="model_id" ref="model_cheque_system_cheque_payment"/>
+       <field name="state">code</field>
+       <field name="code">model.post_entries()</field>
+       <field name="user_id" ref="base.user_root"/>
+       <field name='interval_number'>1</field>
+       <field name='interval_type'>days</field>
+       <field name="numbercall">-1</field>
+       <field name="doall" eval="False"/>
+   </record>
+    <record id="cheque_system_tree_form" model="ir.ui.view">
+        <field name="name">cheque.tree.view</field>
+        <field name="model">cheque_system.cheque_payment</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="currency_id" invisible="1" />
+                <field name="date" />
+                <field name="name" />
+                <field name="journal_id" />
+                <field name="partner_id" />
+                <field name="amount" />
+                
+            </tree>
+        </field>
+    </record>
+    <record id="cheque_system_payment_form_view" model="ir.ui.view">
+        <field name="name">cheque.wizard</field>
+        <field name="model">cheque_system.cheque_payment</field>
+        <field name="arch" type="xml">
+            <form string="Cheque Payment">
+                <header attrs="{'invisible':[('type','not in',['outbound'])]}">
+                        <button name="outbound_post" class="oe_highlight" attrs = "{'invisible' : [('outbound_status','!=','new')]}" string="Post" type="object" />
+                    <button name="delivered" class="oe_highlight" attrs = "{'invisible' : [('outbound_status','!=','issued')]}" string="Delivered" type="object" />
+                    <button name="outbound_done" class="oe_highlight" attrs = "{'invisible' : [('outbound_status','!=','under_deduct')]}" string="Done" type="object" />
+                    <button name="outbound_return" class="oe_highlight" attrs = "{'invisible' : [('outbound_status','!=','under_deduct')]}" string="Rejected" type="object" />
+
+                    <field name="outbound_status" widget="statusbar" attrs = "{'invisible' : [('type','=','inbound')]}"/>
+                    
+                </header>
+                <header attrs="{'invisible':[('type','not in',['inbound'])]}">
+                    <field name="inbound_status" widget="statusbar" attrs = "{'invisible' : [('type','=','outbound')]}"/>
+                    <button name="inbound_post" class="oe_highlight" attrs = "{'invisible' : [('inbound_status','!=','new')]}" string="Post" type="object" />
+                    <button name="inbound_validate" class="oe_highlight" attrs = "{'invisible' : [('inbound_status','not in',('handed','re_under_collection','under_collection'))]}" string="Collect" type="object" />
+                    <button name="inbound_reject" class="oe_highlight" attrs = "{'invisible' : [('inbound_status','not in',('handed','re_under_collection','under_collection'))]}" string="Reject" type="object" />
+                    <button name="inbound_cancel" class="oe_highlight" attrs = "{'invisible' : [('inbound_status','not in',('handed','re_under_collection','under_collection','rejected'))]}" string="Cancel" type="object" />
+                    <button name="inbound_recollect" class="oe_highlight" attrs = "{'invisible' : [('inbound_status','!=','rejected')]}" string="Recollect" type="object" />
+                </header>
+                <sheet>
+                    <div name="button_box" class="oe_button_box">
+                        <button name="open_journal_entry" class="oe_stat_button" icon="fa-list" type="object" string="Journal Entry"></button>
+                    </div>
+
+                    <group>
+                        <group>
+                            <field name="name" readonly = '1'/>
+                            <field name = 'state' invisible = '1'/>
+                            <field name="type" attrs="{'readonly':[('state','not in',['draft'])]}" widget="radio" />
+                            <field name="partner_id" attrs="{'readonly':[('state','not in',['draft'])]}" />
+                            <field name='company_id' invisible="1"/>
+                            <field name="amount" widget="monetary"  />
+                            <field name="currency_id"  attrs="{'readonly':[('state','not in',['draft'])]}"/>
+
+                            <field name="ref" attrs="{'readonly':[('state','not in',['draft'])]}" />
+                            <field name="journal_id" options="{'no_create':1,'no_create_edit':1}" attrs="{'readonly':[('state','not in',['draft'])]}" />
+                        </group>
+                        <group>
+                            <field name="date" attrs="{'readonly':[('state','not in',['draft'])]}" required = '1'/>
+                            <field name="due_date" attrs="{'readonly':[('state','not in',['draft'])]}" required = '1'/>
+                            <field name="descreption"  />
+                        </group>
+                        <group attrs="{'invisible':[('type','not in',['outbound'])]}">
+                            <field name="cheque_book_id" attrs="{'readonly':[('state','not in',['draft'])],'required' : [('type','in',['outbound'])]}" domain = "[('status','=','in_use'),('journal_id','=',journal_id)]"/>
+                            <field name="cheque_number" attrs="{'readonly':[('state','not in',['draft'])]}"/>
+                        </group>
+                         <group attrs="{'invisible':[('type','in',['outbound'])]}">
+                            <field name="inbound_cheque_number" attrs="{'readonly':[('state','not in',['draft'])],'required' : [('type','not in',['outbound'])]}"/>
+                            <field name="bank_id" attrs="{'readonly':[('state','not in',['draft'])]}"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="cheque_system_payment_menu_action" model="ir.actions.act_window">
+        <field name="name">PDC Cheque Payment</field>
+        <field name="res_model">cheque_system.cheque_payment</field>
+        <field name="view_mode">tree,form</field>
+        <field
+            name="view_ids"
+            eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('cheque_system_tree_form')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('cheque_system_payment_form_view')})]"
+        />
+    </record>
+        
+    <record id="cheque_action_move_journal_line" model="ir.actions.act_window">
+        <field name="name">Journal Entries</field>
+        <field name="res_model">account.move</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="view_id" ref="account.view_move_tree" />
+        <field name="search_view_id" ref="account.view_account_move_filter" />
+    </record>
+    <!-- PDC Menu -->
+
+    <menuitem id="menu_pdc_payment" name="PDC payment"                                                 parent="account_accountant.menu_accounting" sequence="25" action="cheque_system_payment_menu_action" />
+    </data>
+</odoo>

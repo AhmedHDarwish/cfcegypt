@@ -1,0 +1,67 @@
+<odoo>
+  <data>
+    <record model="ir.ui.view" id="contract_changes">
+      <field name="name">contract changes</field>
+      <field name="model">hr.contract</field>
+       <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr = '//group[@name = "salary_info"]' position = 'inside'>
+                <group name="allowance_1">
+                    <label for="allowance_1"/>
+                    <div class="o_row" name="allowance_1">
+                        <field name="allowance_1" nolabel="1"/>
+                        <span>/ month</span>
+                    </div>
+                </group>
+                <group name="allowance_2">
+                    <label for="allowance_2"/>
+                    <div class="o_row" name="allowance_2">
+                        <field name="allowance_2" nolabel="1"/>
+                        <span>/ month</span>
+                    </div>
+                </group>
+                <group name="allowance_3">
+                    <label for="allowance_3"/>
+                    <div class="o_row" name="allowance_3">
+                        <field name="allowance_3" nolabel="1"/>
+                        <span>/ month</span>
+                    </div>
+                </group>
+                <group name="allowance_4">
+                    <label for="allowance_4"/>
+                    <div class="o_row" name="allowance_4">
+                        <field name="allowance_4" nolabel="1"/>
+                        <span>/ month</span>
+                    </div>
+                </group>
+            </xpath>
+            <xpath expr = '//field[@name = "contract_type_id"]' position = 'after'>
+                    <field name = 'transportation_type'/>
+                    <field name="transportaion_amount"/>
+                    <field name = 'housing_type'/>
+                    <field name="housing_amount"/>
+            </xpath>
+            <xpath expr = '//notebook' position = 'inside'>
+                <page string = 'Medical' name = 'medical'>
+                    <group>
+                        <field name = 'has_medical_insurance'/>
+                        <field name="medical_class" attrs = "{'invisible' : [('has_medical_insurance','=',False)]}"/>
+                        <field name="monthly_fees" attrs = "{'invisible' : [('has_medical_insurance','=',False)]}"/>
+                        <field name="medical_type" attrs = "{'invisible' : [('has_medical_insurance','=',False)]}"/>
+                        <field name="medical_percentage" attrs = "{'invisible' : ['|',('has_medical_insurance','=',False),('medical_type','!=','employee_pay_perc')]}"/>
+                        <field name="medical_attachment" attrs = "{'invisible' : [('has_medical_insurance','=',False)]}"/>
+                    </group>
+                </page>
+                <page string = 'Social' name = 'medical'>
+                    <group>
+                        <field name = 'has_social_insurance'/>
+                        <field name="social_isurance_number" attrs = "{'invisible' : [('has_social_insurance','=',False)]}"/>
+                        <field name="social_isurance_date" attrs = "{'invisible' : [('has_social_insurance','=',False)]}"/>
+                        <field name="social_isurance_attachment" attrs = "{'invisible' : [('has_social_insurance','=',False)]}"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+  </data>
+</odoo>

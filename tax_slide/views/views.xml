@@ -1,0 +1,65 @@
+<odoo>
+  <data>
+     <record id="tax_slide_form_view" model="ir.ui.view">
+        <field name="name">tax_slide_form</field>
+        <field name="model">tax_slide.tax_slide</field>
+        <field name="arch" type="xml">
+            <form string="Employees Handover">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only"/>
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="priority"/>
+                            <field name="max_salary"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Lines" name="lines">
+                            <field name="tax_slide_lines">
+                                <tree editable="bottom">
+                                    <field name="amount"/>
+                                    <field name="percentage"/>
+                                    <field name="tax_amount"/>
+                                    <field name="note"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+      
+    <record id="tax_slide_tree_view" model="ir.ui.view">
+        <field name="name">tax_slide_tree</field>
+        <field name="model">tax_slide.tax_slide</field>
+        <field name="arch" type="xml">
+            <tree string="Tax Slide">
+                <field name="name"/>
+                <field name="priority"/>
+                <field name="max_salary"/>
+            </tree>
+        </field>
+    </record>
+      
+    <record id="act_tax_slide" model="ir.actions.act_window">
+        <field name="name">Tax Slide</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">tax_slide.tax_slide</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('tax_slide_tree_view')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('tax_slide_form_view')})]"/>
+    </record>
+      
+    <menuitem id="menu_tax_slide"
+              name="Tax slide"
+              parent="hr_payroll.menu_hr_salary_configuration"
+              action="act_tax_slide"/>
+  </data>
+</odoo>
