@@ -1,0 +1,584 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* to_sales_target
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-10-19 07:04+0000\n"
+"PO-Revision-Date: 2020-10-19 07:04+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: to_sales_target
+#: model:ir.model.fields,field_description:to_sales_target.field_abstract_sales_target__message_needaction
+#: model:ir.model.fields,field_description:to_sales_target.field_personal_sales_target__message_needaction
+#: model:ir.model.fields,field_description:to_sales_target.field_team_sales_target__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: to_sales_target
+#: model:ir.ui.menu,name:to_sales_target.personal_sales_target_all_target_menu
+msgid "All Sales Targets"
+msgstr ""
+
+#. module: to_sales_target
+#: model_terms:ir.ui.view,arch_db:to_sales_target.team_sales_target_form
+msgid "Approve"
+msgstr ""
+
+#. module: to_sales_target
+#: model:ir.model.fields.selection,name:to_sales_target.selection__abstract_sales_target__state__approved
+#: model:ir.model.fields.selection,name:to_sales_target.selection__personal_sales_target__state__approved
+#: model:ir.model.fields.selection,name:to_sales_target.selection__team_sales_target__state__approved
+#: model:ir.ui.menu,name:to_sales_target.team_sales_target_approved_menu
+#: model_terms:ir.ui.view,arch_db:to_sales_target.team_sales_target_search
+msgid "Approved"
+msgstr ""
+
+#. module: to_sales_target
+#: model:ir.actions.act_window,name:to_sales_target.action_team_sales_target_approved
+msgid "Approved Sales Targets"
+msgstr ""
+
+#. module: to_sales_target
+#: model:ir.model.fields,field_description:to_sales_target.field_abstract_sales_target__message_attachment_count
+#: model:ir.model.fields,field_description:to_sales_target.field_personal_sales_target__message_attachment_count
+#: model:ir.model.fields,field_description:to_sales_target.field_team_sales_target__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: to_sales_target
+#: model_terms:ir.ui.view,arch_db:to_sales_target.team_sales_target_form
+msgid "Cancel"
+msgstr ""
+
+#. module: to_sales_target
+#: model:ir.model.fields.selection,name:to_sales_target.selection__abstract_sales_target__state__cancelled
+#: model:ir.model.fields.selection,name:to_sales_target.selection__personal_sales_target__state__cancelled
+#: model:ir.model.fields.selection,name:to_sales_target.selection__team_sales_target__state__cancelled
+msgid "Cancelled"
+msgstr ""
+
+#. module: to_sales_target
+#: model_terms:ir.ui.view,arch_db:to_sales_target.team_sales_target_form
+msgid "Confirm"
+msgstr ""
+
+#. module: to_sales_target
+#: model_terms:ir.actions.act_window,help:to_sales_target.action_personal_sales_target_my_target
+msgid "Contact your sales team leader to ask for your sales targets"
+msgstr ""
+
+#. module: to_sales_target
+#: model:ir.model.fields,field_description:to_sales_target.field_personal_sales_target__create_uid
+#: model:ir.model.fields,field_description:to_sales_target.field_team_sales_target__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: to_sales_target
+#: model:ir.model.fields,field_description:to_sales_target.field_personal_sales_target__create_date
+#: model:ir.model.fields,field_description:to_sales_target.field_team_sales_target__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: to_sales_target
+#: model:ir.model.fields,field_description:to_sales_target.field_abstract_sales_target__display_name
+#: model:ir.model.fields,field_description:to_sales_target.field_personal_sales_target__display_name
+#: model:ir.model.fields,field_description:to_sales_target.field_sales_target_mixin__display_name
+#: model:ir.model.fields,field_description:to_sales_target.field_team_sales_target__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: to_sales_target
+#: model:ir.model.fields.selection,name:to_sales_target.selection__abstract_sales_target__state__draft
+#: model:ir.model.fields.selection,name:to_sales_target.selection__personal_sales_target__state__draft
+#: model:ir.model.fields.selection,name:to_sales_target.selection__team_sales_target__state__draft
+#: model_terms:ir.ui.view,arch_db:to_sales_target.team_sales_target_search
+msgid "Draft"
+msgstr ""
+
+#. module: to_sales_target
+#: model:ir.ui.menu,name:to_sales_target.team_sales_target_draft_menu
+msgid "Draft Targets"
+msgstr ""
+
+#. module: to_sales_target
+#: model:ir.model.fields,field_description:to_sales_target.field_abstract_sales_target__end_date
+#: model:ir.model.fields,field_description:to_sales_target.field_personal_sales_target__end_date
+#: model:ir.model.fields,field_description:to_sales_target.field_team_sales_target__end_date
+#: model_terms:ir.ui.view,arch_db:to_sales_target.personal_sales_target_search
+#: model_terms:ir.ui.view,arch_db:to_sales_target.team_sales_target_search
+msgid "End Date"
+msgstr ""
+
+#. module: to_sales_target
+#: model:ir.model.fields,field_description:to_sales_target.field_abstract_sales_target__message_follower_ids
+#: model:ir.model.fields,field_description:to_sales_target.field_personal_sales_target__message_follower_ids
+#: model:ir.model.fields,field_description:to_sales_target.field_team_sales_target__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: to_sales_target
+#: model:ir.model.fields,field_description:to_sales_target.field_abstract_sales_target__message_channel_ids
+#: model:ir.model.fields,field_description:to_sales_target.field_personal_sales_target__message_channel_ids
+#: model:ir.model.fields,field_description:to_sales_target.field_team_sales_target__message_channel_ids
+msgid "Followers (Channels)"
+msgstr ""
+
+#. module: to_sales_target
+#: model:ir.model.fields,field_description:to_sales_target.field_abstract_sales_target__message_partner_ids
+#: model:ir.model.fields,field_description:to_sales_target.field_personal_sales_target__message_partner_ids
+#: model:ir.model.fields,field_description:to_sales_target.field_team_sales_target__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: to_sales_target
+#: model_terms:ir.ui.view,arch_db:to_sales_target.personal_sales_target_search
+#: model_terms:ir.ui.view,arch_db:to_sales_target.team_sales_target_search
+msgid "Group By"
+msgstr ""
+
+#. module: to_sales_target
+#: model:ir.model.fields,field_description:to_sales_target.field_abstract_sales_target__id
+#: model:ir.model.fields,field_description:to_sales_target.field_personal_sales_target__id
+#: model:ir.model.fields,field_description:to_sales_target.field_sales_target_mixin__id
+#: model:ir.model.fields,field_description:to_sales_target.field_team_sales_target__id
+msgid "ID"
+msgstr ""
+
+#. module: to_sales_target
+#: model:ir.model.fields,help:to_sales_target.field_abstract_sales_target__message_needaction
+#: model:ir.model.fields,help:to_sales_target.field_abstract_sales_target__message_unread
+#: model:ir.model.fields,help:to_sales_target.field_personal_sales_target__message_needaction
+#: model:ir.model.fields,help:to_sales_target.field_personal_sales_target__message_unread
+#: model:ir.model.fields,help:to_sales_target.field_team_sales_target__message_needaction
+#: model:ir.model.fields,help:to_sales_target.field_team_sales_target__message_unread
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: to_sales_target
+#: model:ir.model.fields,help:to_sales_target.field_abstract_sales_target__message_has_error
+#: model:ir.model.fields,help:to_sales_target.field_abstract_sales_target__message_has_sms_error
+#: model:ir.model.fields,help:to_sales_target.field_personal_sales_target__message_has_error
+#: model:ir.model.fields,help:to_sales_target.field_personal_sales_target__message_has_sms_error
+#: model:ir.model.fields,help:to_sales_target.field_team_sales_target__message_has_error
+#: model:ir.model.fields,help:to_sales_target.field_team_sales_target__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: to_sales_target
+#: model:ir.model.fields,field_description:to_sales_target.field_abstract_sales_target__message_is_follower
+#: model:ir.model.fields,field_description:to_sales_target.field_personal_sales_target__message_is_follower
+#: model:ir.model.fields,field_description:to_sales_target.field_team_sales_target__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: to_sales_target
+#: model:ir.model.fields,field_description:to_sales_target.field_abstract_sales_target____last_update
+#: model:ir.model.fields,field_description:to_sales_target.field_personal_sales_target____last_update
+#: model:ir.model.fields,field_description:to_sales_target.field_sales_target_mixin____last_update
+#: model:ir.model.fields,field_description:to_sales_target.field_team_sales_target____last_update
+msgid "Last Modified on"
+msgstr ""
+
+#. module: to_sales_target
+#: model:ir.model.fields,field_description:to_sales_target.field_personal_sales_target__write_uid
+#: model:ir.model.fields,field_description:to_sales_target.field_team_sales_target__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: to_sales_target
+#: model:ir.model.fields,field_description:to_sales_target.field_personal_sales_target__write_date
+#: model:ir.model.fields,field_description:to_sales_target.field_team_sales_target__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: to_sales_target
+#: model:ir.model.fields,field_description:to_sales_target.field_abstract_sales_target__message_main_attachment_id
+#: model:ir.model.fields,field_description:to_sales_target.field_personal_sales_target__message_main_attachment_id
+#: model:ir.model.fields,field_description:to_sales_target.field_team_sales_target__message_main_attachment_id
+msgid "Main Attachment"
+msgstr ""
+
+#. module: to_sales_target
+#: model:ir.model.fields,field_description:to_sales_target.field_abstract_sales_target__message_has_error
+#: model:ir.model.fields,field_description:to_sales_target.field_personal_sales_target__message_has_error
+#: model:ir.model.fields,field_description:to_sales_target.field_team_sales_target__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: to_sales_target
+#: model:ir.model.fields,field_description:to_sales_target.field_abstract_sales_target__message_ids
+#: model:ir.model.fields,field_description:to_sales_target.field_personal_sales_target__message_ids
+#: model:ir.model.fields,field_description:to_sales_target.field_team_sales_target__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: to_sales_target
+#: code:addons/to_sales_target/models/target_mixin.py:0
+#, python-format
+msgid "Month must be 1~12. You've input %s"
+msgstr ""
+
+#. module: to_sales_target
+#: model:ir.actions.act_window,name:to_sales_target.action_personal_sales_target_my_target
+#: model_terms:ir.ui.view,arch_db:to_sales_target.personal_sales_target_search
+msgid "My Sales Target"
+msgstr ""
+
+#. module: to_sales_target
+#: model:ir.ui.menu,name:to_sales_target.personal_sales_target_my_target_menu
+msgid "My Sales Targets"
+msgstr ""
+
+#. module: to_sales_target
+#: model:ir.model.fields,field_description:to_sales_target.field_abstract_sales_target__message_needaction_counter
+#: model:ir.model.fields,field_description:to_sales_target.field_personal_sales_target__message_needaction_counter
+#: model:ir.model.fields,field_description:to_sales_target.field_team_sales_target__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: to_sales_target
+#: model:ir.model.fields,field_description:to_sales_target.field_abstract_sales_target__message_has_error_counter
+#: model:ir.model.fields,field_description:to_sales_target.field_personal_sales_target__message_has_error_counter
+#: model:ir.model.fields,field_description:to_sales_target.field_team_sales_target__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: to_sales_target
+#: model:ir.model.fields,help:to_sales_target.field_abstract_sales_target__message_needaction_counter
+#: model:ir.model.fields,help:to_sales_target.field_personal_sales_target__message_needaction_counter
+#: model:ir.model.fields,help:to_sales_target.field_team_sales_target__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr ""
+
+#. module: to_sales_target
+#: model:ir.model.fields,help:to_sales_target.field_abstract_sales_target__message_has_error_counter
+#: model:ir.model.fields,help:to_sales_target.field_personal_sales_target__message_has_error_counter
+#: model:ir.model.fields,help:to_sales_target.field_team_sales_target__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: to_sales_target
+#: model:ir.model.fields,help:to_sales_target.field_abstract_sales_target__message_unread_counter
+#: model:ir.model.fields,help:to_sales_target.field_personal_sales_target__message_unread_counter
+#: model:ir.model.fields,help:to_sales_target.field_team_sales_target__message_unread_counter
+msgid "Number of unread messages"
+msgstr ""
+
+#. module: to_sales_target
+#: model:ir.actions.act_window,name:to_sales_target.action_personal_sales_target
+#: model:ir.model,name:to_sales_target.model_personal_sales_target
+#: model:ir.model.fields,field_description:to_sales_target.field_res_users__personal_sales_target_ids
+#: model:ir.ui.menu,name:to_sales_target.personal_sales_target_menu
+#: model_terms:ir.ui.view,arch_db:to_sales_target.personal_sales_target_tree
+#: model_terms:ir.ui.view,arch_db:to_sales_target.team_sales_target_form
+#: model_terms:ir.ui.view,arch_db:to_sales_target.view_personal_sales_target_graph
+#: model_terms:ir.ui.view,arch_db:to_sales_target.view_personal_sales_target_pivot
+msgid "Personal Sales Target"
+msgstr ""
+
+#. module: to_sales_target
+#: model:ir.model.fields,field_description:to_sales_target.field_team_sales_target__personal_target_ids
+msgid "Personal Sales Targets"
+msgstr ""
+
+#. module: to_sales_target
+#: code:addons/to_sales_target/models/target_mixin.py:0
+#, python-format
+msgid "Quarter must be 1~4. You've input %s"
+msgstr ""
+
+#. module: to_sales_target
+#: model_terms:ir.ui.view,arch_db:to_sales_target.team_sales_target_form
+msgid "Refuse"
+msgstr ""
+
+#. module: to_sales_target
+#: model:ir.model.fields.selection,name:to_sales_target.selection__abstract_sales_target__state__refused
+#: model:ir.model.fields.selection,name:to_sales_target.selection__personal_sales_target__state__refused
+#: model:ir.model.fields.selection,name:to_sales_target.selection__team_sales_target__state__refused
+#: model:ir.ui.menu,name:to_sales_target.team_sales_target_refused_menu
+#: model_terms:ir.ui.view,arch_db:to_sales_target.team_sales_target_search
+msgid "Refused"
+msgstr ""
+
+#. module: to_sales_target
+#: model:ir.actions.act_window,name:to_sales_target.action_team_sales_target_refused
+msgid "Refused Sales Targets"
+msgstr ""
+
+#. module: to_sales_target
+#: model:ir.ui.menu,name:to_sales_target.report_menu
+msgid "Report"
+msgstr ""
+
+#. module: to_sales_target
+#: model:ir.model.fields,field_description:to_sales_target.field_abstract_sales_target__message_has_sms_error
+#: model:ir.model.fields,field_description:to_sales_target.field_personal_sales_target__message_has_sms_error
+#: model:ir.model.fields,field_description:to_sales_target.field_team_sales_target__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: to_sales_target
+#: model:ir.model.fields,field_description:to_sales_target.field_personal_sales_target__sale_person_id
+#: model_terms:ir.ui.view,arch_db:to_sales_target.personal_sales_target_search
+msgid "Sale Person"
+msgstr ""
+
+#. module: to_sales_target
+#: model:ir.ui.menu,name:to_sales_target.team_sales_target_root_menu
+#: model_terms:ir.ui.view,arch_db:to_sales_target.crm_team_view_form
+msgid "Sales Target"
+msgstr ""
+
+#. module: to_sales_target
+#: model:ir.model,name:to_sales_target.model_sales_target_mixin
+msgid "Sales Target Mixin"
+msgstr ""
+
+#. module: to_sales_target
+#: model:ir.model.fields,field_description:to_sales_target.field_crm_team__team_sales_target_ids
+msgid "Sales Targets"
+msgstr ""
+
+#. module: to_sales_target
+#: model:ir.model.fields,field_description:to_sales_target.field_crm_team__approved_targets_count
+#: model:ir.model.fields,field_description:to_sales_target.field_res_users__approved_targets_count
+msgid "Sales Targets Count"
+msgstr ""
+
+#. module: to_sales_target
+#: model:ir.model,name:to_sales_target.model_crm_team
+#: model:ir.model.fields,field_description:to_sales_target.field_team_sales_target__crm_team_id
+#: model_terms:ir.ui.view,arch_db:to_sales_target.team_sales_target_search
+msgid "Sales Team"
+msgstr ""
+
+#. module: to_sales_target
+#: model:ir.model.fields,help:to_sales_target.field_team_sales_target__personal_target_ids
+msgid ""
+"Sales targets for the team members which will be suggested automatically on "
+"changing the Sales Team. Please remember to add member to the team first to "
+"have the targets suggested."
+msgstr ""
+
+#. module: to_sales_target
+#: model_terms:ir.ui.view,arch_db:to_sales_target.personal_sales_target_search
+msgid "Search Personal Sales Target"
+msgstr ""
+
+#. module: to_sales_target
+#: model_terms:ir.ui.view,arch_db:to_sales_target.team_sales_target_search
+msgid "Search Team Sales Target"
+msgstr ""
+
+#. module: to_sales_target
+#: model_terms:ir.ui.view,arch_db:to_sales_target.team_sales_target_form
+msgid "Set to Draft"
+msgstr ""
+
+#. module: to_sales_target
+#: model:ir.model.fields,field_description:to_sales_target.field_abstract_sales_target__start_date
+#: model:ir.model.fields,field_description:to_sales_target.field_personal_sales_target__start_date
+#: model:ir.model.fields,field_description:to_sales_target.field_team_sales_target__start_date
+#: model_terms:ir.ui.view,arch_db:to_sales_target.personal_sales_target_search
+#: model_terms:ir.ui.view,arch_db:to_sales_target.team_sales_target_search
+msgid "Start Date"
+msgstr ""
+
+#. module: to_sales_target
+#: model:ir.model.fields,field_description:to_sales_target.field_abstract_sales_target__state
+#: model:ir.model.fields,field_description:to_sales_target.field_personal_sales_target__state
+#: model:ir.model.fields,field_description:to_sales_target.field_team_sales_target__state
+msgid "Status"
+msgstr ""
+
+#. module: to_sales_target
+#: model:ir.model.fields,field_description:to_sales_target.field_abstract_sales_target__target
+#: model:ir.model.fields,field_description:to_sales_target.field_personal_sales_target__target
+#: model:ir.model.fields,field_description:to_sales_target.field_team_sales_target__target
+msgid "Target"
+msgstr ""
+
+#. module: to_sales_target
+#: model:ir.actions.act_window,name:to_sales_target.action_team_sales_target
+#: model:ir.model,name:to_sales_target.model_abstract_sales_target
+#: model:ir.model,name:to_sales_target.model_team_sales_target
+#: model:ir.model.fields,field_description:to_sales_target.field_personal_sales_target__team_target_id
+#: model:ir.ui.menu,name:to_sales_target.team_sales_target_menu
+#: model_terms:ir.ui.view,arch_db:to_sales_target.crm_team_view_form
+#: model_terms:ir.ui.view,arch_db:to_sales_target.team_sales_target_form
+#: model_terms:ir.ui.view,arch_db:to_sales_target.team_sales_target_tree
+#: model_terms:ir.ui.view,arch_db:to_sales_target.view_team_sales_target_graph
+#: model_terms:ir.ui.view,arch_db:to_sales_target.view_team_sales_target_pivot
+msgid "Team Sales Target"
+msgstr ""
+
+#. module: to_sales_target
+#: model:ir.model.constraint,message:to_sales_target.constraint_abstract_sales_target_start_date_end_date_check
+#: model:ir.model.constraint,message:to_sales_target.constraint_personal_sales_target_start_date_end_date_check
+#: model:ir.model.constraint,message:to_sales_target.constraint_team_sales_target_start_date_end_date_check
+msgid "The End Date must not be earlier than the Start Date"
+msgstr ""
+
+#. module: to_sales_target
+#: code:addons/to_sales_target/models/target_mixin.py:0
+#, python-format
+msgid "The method `%s` has not been implemented for the model '%s'"
+msgstr ""
+
+#. module: to_sales_target
+#: model:ir.model.constraint,message:to_sales_target.constraint_personal_sales_target_person_unique_per_team
+msgid ""
+"The sales person must be unique per Team Sales Target. You cannot define "
+"more than one personal sales target for the same sales person in the same "
+"Team Sales Target"
+msgstr ""
+
+#. module: to_sales_target
+#: model:ir.model.fields,help:to_sales_target.field_abstract_sales_target__target
+#: model:ir.model.fields,help:to_sales_target.field_personal_sales_target__target
+#: model:ir.model.fields,help:to_sales_target.field_team_sales_target__target
+msgid ""
+"The sales target amount for the duration between the Start Date and the End "
+"Date"
+msgstr ""
+
+#. module: to_sales_target
+#: model:ir.model.constraint,message:to_sales_target.constraint_abstract_sales_target_target_positive_check
+#: model:ir.model.constraint,message:to_sales_target.constraint_personal_sales_target_target_positive_check
+#: model:ir.model.constraint,message:to_sales_target.constraint_team_sales_target_target_positive_check
+msgid "The target must be a positive value!"
+msgstr ""
+
+#. module: to_sales_target
+#: code:addons/to_sales_target/models/personal_sales_target.py:0
+#, python-format
+msgid ""
+"The target you've input for the sales person %s is overlapping an existing "
+"one which has Date Start: %s and Date End: %s"
+msgstr ""
+
+#. module: to_sales_target
+#: code:addons/to_sales_target/models/team_sales_target.py:0
+#, python-format
+msgid ""
+"The target you've input is overlapping an existing one which has Date Start:"
+" %s, Date End: %s"
+msgstr ""
+
+#. module: to_sales_target
+#: model:ir.ui.menu,name:to_sales_target.team_sales_target_to_approve_menu
+msgid "To Approve"
+msgstr ""
+
+#. module: to_sales_target
+#: model:ir.actions.act_window,name:to_sales_target.action_team_sales_target_to_approve
+msgid "To Approve Sales Targets"
+msgstr ""
+
+#. module: to_sales_target
+#: model:ir.model.fields,field_description:to_sales_target.field_abstract_sales_target__message_unread
+#: model:ir.model.fields,field_description:to_sales_target.field_personal_sales_target__message_unread
+#: model:ir.model.fields,field_description:to_sales_target.field_team_sales_target__message_unread
+msgid "Unread Messages"
+msgstr ""
+
+#. module: to_sales_target
+#: model:ir.model.fields,field_description:to_sales_target.field_abstract_sales_target__message_unread_counter
+#: model:ir.model.fields,field_description:to_sales_target.field_personal_sales_target__message_unread_counter
+#: model:ir.model.fields,field_description:to_sales_target.field_team_sales_target__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr ""
+
+#. module: to_sales_target
+#: model:ir.model,name:to_sales_target.model_res_users
+msgid "Users"
+msgstr ""
+
+#. module: to_sales_target
+#: model:ir.model.fields.selection,name:to_sales_target.selection__abstract_sales_target__state__confirmed
+#: model:ir.model.fields.selection,name:to_sales_target.selection__personal_sales_target__state__confirmed
+#: model:ir.model.fields.selection,name:to_sales_target.selection__team_sales_target__state__confirmed
+#: model_terms:ir.ui.view,arch_db:to_sales_target.team_sales_target_search
+msgid "Waiting Approved"
+msgstr ""
+
+#. module: to_sales_target
+#: code:addons/to_sales_target/models/target_mixin.py:0
+#, python-format
+msgid "Week must be 1~52. You've input %s"
+msgstr ""
+
+#. module: to_sales_target
+#: code:addons/to_sales_target/models/abstract_sales_target.py:0
+#, python-format
+msgid "You can only delete records whose state is draft."
+msgstr ""
+
+#. module: to_sales_target
+#: code:addons/to_sales_target/models/abstract_sales_target.py:0
+#, python-format
+msgid ""
+"You cannot approve a sales target that is not in Waiting Approved state."
+msgstr ""
+
+#. module: to_sales_target
+#: code:addons/to_sales_target/models/abstract_sales_target.py:0
+#, python-format
+msgid ""
+"You cannot cancel a Sales Target when it is neither in Waiting Approved nor "
+"Refused nor Approved state."
+msgstr ""
+
+#. module: to_sales_target
+#: code:addons/to_sales_target/models/abstract_sales_target.py:0
+#, python-format
+msgid "You cannot confirm a sales target that is not in draft state."
+msgstr ""
+
+#. module: to_sales_target
+#: code:addons/to_sales_target/models/abstract_sales_target.py:0
+#, python-format
+msgid ""
+"You cannot refuse a sales target that is not in Waiting Approved state."
+msgstr ""
+
+#. module: to_sales_target
+#: code:addons/to_sales_target/models/abstract_sales_target.py:0
+#, python-format
+msgid ""
+"You cannot set a sales target to draft when it is neither in Cancelled nor "
+"Refused state."
+msgstr ""
+
+#. module: to_sales_target
+#: code:addons/to_sales_target/models/personal_sales_target.py:0
+#, python-format
+msgid ""
+"You must be a sales team leader to approve personal sales targets for your "
+"team members"
+msgstr ""
+
+#. module: to_sales_target
+#: code:addons/to_sales_target/models/team_sales_target.py:0
+#, python-format
+msgid ""
+"You must be granted with Regional Sales Manager access rights to approve the"
+" sales target for the sales team '%s'"
+msgstr ""
+
+#. module: to_sales_target
+#: code:addons/to_sales_target/models/team_sales_target.py:0
+#, python-format
+msgid ""
+"You must be granted with Regional Sales Manager access rights to refuse the "
+"sales target for the sales team '%s'"
+msgstr ""

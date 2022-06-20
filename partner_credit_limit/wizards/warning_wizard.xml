@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	
+	<!-- Warning Wizard From View -->
+	<record id="partner_credit_limit_warning_wizard_view" model="ir.ui.view">
+          <field name="name">partner.credit.limit.warning.wizard.view</field>
+          <field name="model">partner.credit.limit.warning.wizard</field>
+          <field name="arch" type="xml">
+              <form string="Reason">
+                  <field name='msg' readonly='1'/>
+                  <field name='sale_order_id' invisible='1'/>
+                  <footer>
+                      <button string="Ok" class="btn-primary" special="cancel"/>
+                      <button string="Allow" type="object" class="btn-primary" name="allow_action_confirm" groups="partner_credit_limit.group_over_credit_period"/>
+                  </footer>
+              </form>
+          </field>
+	</record>
+
+	<!-- Warning Wizard Action -->
+	<record id="partner_credit_limit_warning_wizard" model="ir.actions.act_window">
+          <field name="name">Something went wrong!</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">partner.credit.limit.warning.wizard</field>
+          <field name="view_mode">form</field>
+          <field name="view_id" ref="partner_credit_limit_warning_wizard_view"/>
+          <field name="target">new</field>
+	</record>
+	
+</odoo>

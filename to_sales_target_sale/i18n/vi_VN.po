@@ -1,0 +1,309 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* to_sales_target_sale
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-04-08 02:12+0000\n"
+"PO-Revision-Date: 2020-04-08 02:12+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: to_sales_target_sale
+#: model_terms:ir.ui.view,arch_db:to_sales_target_sale.personal_sales_target_form
+#: model_terms:ir.ui.view,arch_db:to_sales_target_sale.team_sales_target_form
+msgid "All Channels"
+msgstr "Tất cả các Kênh"
+
+#. module: to_sales_target_sale
+#: model:ir.actions.server,name:to_sales_target_sale.cron_compute_crm_team_current_month_invoiced_target_ir_actions_server
+#: model:ir.cron,cron_name:to_sales_target_sale.cron_compute_crm_team_current_month_invoiced_target
+#: model:ir.cron,name:to_sales_target_sale.cron_compute_crm_team_current_month_invoiced_target
+msgid "Compute CRM Teams' Current Month Invoiced Target"
+msgstr "Tính toán Mục tiêu Xuất hoá đơn Tháng hiện hành của Đội bán hàng"
+
+#. module: to_sales_target_sale
+#: model:ir.actions.server,name:to_sales_target_sale.cron_compute_res_user_current_month_target_sales_invoiced_ir_actions_server
+#: model:ir.cron,cron_name:to_sales_target_sale.cron_compute_res_user_current_month_target_sales_invoiced
+#: model:ir.cron,name:to_sales_target_sale.cron_compute_res_user_current_month_target_sales_invoiced
+msgid "Compute Users' Current Month Invoiced Target"
+msgstr "Tính toán Mục tiêu Xuất hoá đơn Tháng hiện hành của Người dùng"
+
+#. module: to_sales_target_sale
+#: model:ir.model.fields,help:to_sales_target_sale.field_crm_team__st_sales_invoice_ids
+#: model:ir.model.fields,help:to_sales_target_sale.field_res_users__st_sales_invoice_ids
+msgid "Customer Invoices that are either in Open or in Paid state"
+msgstr "Hoá đơn Khách hàng mà ở trạng thái Mở hoặc Dự thảo"
+
+#. module: to_sales_target_sale
+#: model_terms:ir.ui.view,arch_db:to_sales_target_sale.personal_sales_target_form
+#: model_terms:ir.ui.view,arch_db:to_sales_target_sale.team_sales_target_form
+msgid "Customer Invoices that match this sales target"
+msgstr "Hoá đơn Khách hàng mà liên quan đến Mục tiêu Doanh số này"
+
+#. module: to_sales_target_sale
+#: model_terms:ir.ui.view,arch_db:to_sales_target_sale.personal_sales_target_form
+#: model_terms:ir.ui.view,arch_db:to_sales_target_sale.team_sales_target_form
+msgid "Invoiced"
+msgstr "Đã xuất hoá đơn"
+
+#. module: to_sales_target_sale
+#: model:ir.model.fields,field_description:to_sales_target_sale.field_crm_team__invoiced_target
+msgid "Invoiced Target"
+msgstr "Mục tiêu Xuất hoá đơn"
+
+#. module: to_sales_target_sale
+#: model:ir.model.fields,field_description:to_sales_target_sale.field_abstract_sales_target__invoiced_target_reached
+#: model:ir.model.fields,field_description:to_sales_target_sale.field_personal_sales_target__invoiced_target_reached
+#: model:ir.model.fields,field_description:to_sales_target_sale.field_team_sales_target__invoiced_target_reached
+msgid "Invoiced Target Reached"
+msgstr "Đã xuất Hoá đơn so với Mục tiêu"
+
+#. module: to_sales_target_sale
+#: model:ir.model.fields,field_description:to_sales_target_sale.field_abstract_sales_target__sales_invoiced
+#: model:ir.model.fields,field_description:to_sales_target_sale.field_personal_sales_target__sales_invoiced
+#: model:ir.model.fields,field_description:to_sales_target_sale.field_team_sales_target__sales_invoiced
+msgid "Invoiced Total"
+msgstr "Tổng đã xuất hoá đơn"
+
+#. module: to_sales_target_sale
+#: model:ir.model.fields,field_description:to_sales_target_sale.field_abstract_sales_target__sales_invoice_ids
+#: model:ir.model.fields,field_description:to_sales_target_sale.field_crm_team__st_sales_invoice_ids
+#: model:ir.model.fields,field_description:to_sales_target_sale.field_personal_sales_target__sales_invoice_ids
+#: model:ir.model.fields,field_description:to_sales_target_sale.field_res_users__st_sales_invoice_ids
+#: model:ir.model.fields,field_description:to_sales_target_sale.field_team_sales_target__sales_invoice_ids
+#: model_terms:ir.ui.view,arch_db:to_sales_target_sale.personal_sales_target_form
+#: model_terms:ir.ui.view,arch_db:to_sales_target_sale.team_sales_target_form
+msgid "Invoices"
+msgstr "Hoá đơn"
+
+#. module: to_sales_target_sale
+#: model:ir.model.fields,field_description:to_sales_target_sale.field_abstract_sales_target__sales_invoices_count
+#: model:ir.model.fields,field_description:to_sales_target_sale.field_personal_sales_target__sales_invoices_count
+#: model:ir.model.fields,field_description:to_sales_target_sale.field_team_sales_target__sales_invoices_count
+msgid "Invoices Count"
+msgstr "SL Hoá đơn"
+
+#. module: to_sales_target_sale
+#: model:ir.model,name:to_sales_target_sale.model_personal_sales_target
+msgid "Personal Sales Target"
+msgstr "Mục tiêu Doanh số Cá nhân"
+
+#. module: to_sales_target_sale
+#. openerp-web
+#: code:addons/to_sales_target_sale/static/src/js/sales_team_dashboard_inherit.js:0
+#, python-format
+msgid ""
+"Please ask your sales team leader to set your target this month"
+"in Sales Target application."
+msgstr "Hãy yêu cầu đội trưởng bán hàng của bạn đặt mục tiêu trong tháng này"
+"trong ứng dụng Quản lý mục tiêu bán hàng"
+
+#. module: to_sales_target_sale
+#: model_terms:ir.ui.view,arch_db:to_sales_target_sale.personal_sales_target_form
+#: model_terms:ir.ui.view,arch_db:to_sales_target_sale.team_sales_target_form
+msgid "Sales"
+msgstr "Bán hàng"
+
+#. module: to_sales_target_sale
+#: model_terms:ir.ui.view,arch_db:to_sales_target_sale.personal_sales_target_form
+#: model_terms:ir.ui.view,arch_db:to_sales_target_sale.team_sales_target_form
+msgid "Sales KPI"
+msgstr "KPI Bán hàng"
+
+#. module: to_sales_target_sale
+#: model:ir.model.fields,field_description:to_sales_target_sale.field_abstract_sales_target__sale_order_ids
+#: model:ir.model.fields,field_description:to_sales_target_sale.field_crm_team__st_sales_order_ids
+#: model:ir.model.fields,field_description:to_sales_target_sale.field_personal_sales_target__sale_order_ids
+#: model:ir.model.fields,field_description:to_sales_target_sale.field_res_users__st_sales_order_ids
+#: model:ir.model.fields,field_description:to_sales_target_sale.field_team_sales_target__sale_order_ids
+msgid "Sales Orders"
+msgstr "Đơn Bán"
+
+#. module: to_sales_target_sale
+#: model:ir.model.fields,field_description:to_sales_target_sale.field_abstract_sales_target__sale_orders_count
+#: model:ir.model.fields,field_description:to_sales_target_sale.field_personal_sales_target__sale_orders_count
+#: model:ir.model.fields,field_description:to_sales_target_sale.field_team_sales_target__sale_orders_count
+msgid "Sales Orders Count"
+msgstr "SL Đơn Bán"
+
+#. module: to_sales_target_sale
+#: model:ir.model.fields,help:to_sales_target_sale.field_res_users__st_sales_order_ids
+msgid "Sales Orders in the states of Sales Order and Locked"
+msgstr "Đơn bán ở trạng thái đơn bán và đã khóa"
+
+#. module: to_sales_target_sale
+#: model_terms:ir.ui.view,arch_db:to_sales_target_sale.personal_sales_target_form
+#: model_terms:ir.ui.view,arch_db:to_sales_target_sale.team_sales_target_form
+msgid "Sales Orders that match this target"
+msgstr "Đơn bán phù hợp với mục tiêu này"
+
+#. module: to_sales_target_sale
+#: model:ir.model.fields,help:to_sales_target_sale.field_crm_team__st_sales_order_ids
+msgid ""
+"Sales Orders whose corresponding Sales Orders are in the states of Sales Order"
+"and Locked"
+msgstr "Đơn bán có đơn bán tương ứng ở trạng thái đơn bán"
+"và Đã Khóa"
+
+#. module: to_sales_target_sale
+#: model:ir.model.fields,field_description:to_sales_target_sale.field_abstract_sales_target__sales_target_reached
+#: model:ir.model.fields,field_description:to_sales_target_sale.field_personal_sales_target__sales_target_reached
+#: model:ir.model.fields,field_description:to_sales_target_sale.field_team_sales_target__sales_target_reached
+msgid "Sales Target Reached"
+msgstr "Doanh số Đạt so với Mục tiêu"
+
+#. module: to_sales_target_sale
+#: model:ir.model,name:to_sales_target_sale.model_crm_team
+msgid "Sales Team"
+msgstr "Đội bán hàng"
+
+#. module: to_sales_target_sale
+#: model:ir.model.fields,field_description:to_sales_target_sale.field_abstract_sales_target__sales_total
+#: model:ir.model.fields,field_description:to_sales_target_sale.field_personal_sales_target__sales_total
+#: model:ir.model.fields,field_description:to_sales_target_sale.field_team_sales_target__sales_total
+#: model_terms:ir.ui.view,arch_db:to_sales_target_sale.personal_sales_target_form
+#: model_terms:ir.ui.view,arch_db:to_sales_target_sale.team_sales_target_form
+msgid "Sales Total"
+msgstr "Tổng Doanh số"
+
+#. module: to_sales_target_sale
+#: model:ir.model.fields,help:to_sales_target_sale.field_abstract_sales_target__sales_total
+#: model:ir.model.fields,help:to_sales_target_sale.field_personal_sales_target__sales_total
+#: model:ir.model.fields,help:to_sales_target_sale.field_team_sales_target__sales_total
+msgid ""
+"Sales Total from all channels (e.g. Sales, PoS, Website).\n"
+"Note: Revenue recorded in Sales Management applications will not be included here unless it is invoiced"
+msgstr "Tổng doanh số từ tất cả các kênh (ví dụ: Bán hàng, POS, Website)"
+"Lưu ý: Doanh thu được ghi trong ứng dụng quản lý bán hàng sẽ không được đưa vào đây trừ khi được lập hóa đơn."
+
+#. module: to_sales_target_sale
+#: model_terms:ir.ui.view,arch_db:to_sales_target_sale.view_personal_sales_target_graph
+#: model_terms:ir.ui.view,arch_db:to_sales_target_sale.view_personal_sales_target_pivot
+#: model_terms:ir.ui.view,arch_db:to_sales_target_sale.view_team_sales_target_graph
+#: model_terms:ir.ui.view,arch_db:to_sales_target_sale.view_team_sales_target_pivot
+msgid "Target Comleted (%)"
+msgstr "Mục tiêu Hoàn thành (%)"
+
+#. module: to_sales_target_sale
+#: model:ir.model.fields,field_description:to_sales_target_sale.field_abstract_sales_target__target_reached
+#: model:ir.model.fields,field_description:to_sales_target_sale.field_personal_sales_target__target_reached
+#: model:ir.model.fields,field_description:to_sales_target_sale.field_team_sales_target__target_reached
+#: model_terms:ir.ui.view,arch_db:to_sales_target_sale.personal_sales_target_form
+#: model_terms:ir.ui.view,arch_db:to_sales_target_sale.personal_sales_target_search
+#: model_terms:ir.ui.view,arch_db:to_sales_target_sale.team_sales_target_form
+#: model_terms:ir.ui.view,arch_db:to_sales_target_sale.team_sales_target_search
+msgid "Target Reached"
+msgstr "Mục tiêu đã Đạt"
+
+#. module: to_sales_target_sale
+#: model:ir.model.fields,field_description:to_sales_target_sale.field_res_users__target_sales_invoiced
+msgid "Target Sales Invoiced"
+msgstr "Mục tiêu Doanh số đã Xuất hoá đơn"
+
+#. module: to_sales_target_sale
+#: model_terms:ir.ui.view,arch_db:to_sales_target_sale.personal_sales_target_search
+#: model_terms:ir.ui.view,arch_db:to_sales_target_sale.team_sales_target_search
+msgid "Target Unreached"
+msgstr "Mục tiêu Chưa đạt"
+
+#. module: to_sales_target_sale
+#: model:ir.model.fields,help:to_sales_target_sale.field_crm_team__invoiced_target
+msgid ""
+"Target of invoice revenue for the current month. This is the amount the "
+"sales team estimates to be able to invoice this month. "
+"You can also go to Sales Target Application to define "
+"multiple target for the team over the time. "
+"If a target is defined there for the team, this field becomes readonly. "
+msgstr "Mục tiêu của doanh thu hóa đơn cho tháng hiện tại. Đây là số tiền "
+"mà đội bán hàng ước tính để có thể lập hóa đơn trong tháng này."
+"Bạn cũng có thể truy cập ứng dụng mục tiêu bán hàng để xác định "
+"nhiều mục tiêu cho nhóm theo thời gian."
+"Nếu mục tiêu được xác định ở đó cho đội, mục tiêu này trở nên sẵn sàng."
+
+#. module: to_sales_target_sale
+#: model:ir.model,name:to_sales_target_sale.model_abstract_sales_target
+#: model:ir.model,name:to_sales_target_sale.model_team_sales_target
+msgid "Team Sales Target"
+msgstr "Mục tiêu Doanh số Đội"
+
+#. module: to_sales_target_sale
+#: model:ir.model.fields,help:to_sales_target_sale.field_abstract_sales_target__sales_target_reached
+#: model:ir.model.fields,help:to_sales_target_sale.field_personal_sales_target__sales_target_reached
+#: model:ir.model.fields,help:to_sales_target_sale.field_team_sales_target__sales_target_reached
+msgid ""
+"The Sales Target Reached is computed based on the Untaxed Sales Total and "
+"the approved Target."
+"I.e. Sales Target Reached = 100 * Untaxed Sales Total / Target"
+msgstr "Mục tiêu doanh số đạt được được tính dựa trên Tổng doanh thu trước thuế và"
+"mục tiêu được phê duyệt."
+"Ví dụ: Mục tiêu doanh số đạt được =100 * Tổng doanh thu trước thuế / Target"
+
+#. module: to_sales_target_sale
+#: model:ir.model.fields,help:to_sales_target_sale.field_abstract_sales_target__target_reached
+#: model:ir.model.fields,help:to_sales_target_sale.field_personal_sales_target__target_reached
+#: model:ir.model.fields,help:to_sales_target_sale.field_team_sales_target__target_reached
+msgid ""
+"The Target Reached is computed based on the Sales Total and the approve Target."
+"I.e. Target Reached = 100 * Sales Total / Target"
+msgstr "Mục tiêu đạt được tính dựa trên Tổng doanh thu và mục tiêu được phê duyệt"
+"Ví dụ: Mục tiêu đạt được = 100* Tổng doanh thu / Mục tiêu"
+#. module: to_sales_target_sale
+#: code:addons/to_sales_target_sale/models/abstract_sales_target.py:0
+#, python-format
+msgid ""
+"The method `_get_sale_report_domain` has not been implemented for the model "
+"'%s'"
+msgstr ""
+"Phương thức `_get_sale_report_domain` chưa được triển khai cho model '%s'"
+
+#. module: to_sales_target_sale
+#: code:addons/to_sales_target_sale/models/abstract_sales_target.py:0
+#, python-format
+msgid ""
+"The method `_get_sales_invoices_domain` has not been implemented for the "
+"model '%s'"
+msgstr ""
+"Phương thức `_get_sales_invoices_domain` chưa được triển khai cho model '%s'"
+
+#. module: to_sales_target_sale
+#: code:addons/to_sales_target_sale/models/abstract_sales_target.py:0
+#, python-format
+msgid ""
+"The method `_get_sales_invoices` has not been implemented for the model '%s'"
+msgstr "Phương thức `_get_sales_invoices` chưa được triển khai cho model '%s'"
+
+#. module: to_sales_target_sale
+#: code:addons/to_sales_target_sale/models/abstract_sales_target.py:0
+#, python-format
+msgid ""
+"The method `_get_sales_orders` has not been implemented for the model '%s'"
+msgstr "Phương thức `_get_sales_orders` chưa được triển khai cho model '%s'"
+
+#. module: to_sales_target_sale
+#: model:ir.model.fields,field_description:to_sales_target_sale.field_abstract_sales_target__untaxed_sales_total
+#: model:ir.model.fields,field_description:to_sales_target_sale.field_personal_sales_target__untaxed_sales_total
+#: model:ir.model.fields,field_description:to_sales_target_sale.field_team_sales_target__untaxed_sales_total
+msgid "Untaxed Sales Total"
+msgstr "Tổng Doanh thu Trước thuế"
+
+#. module: to_sales_target_sale
+#: model:ir.model.fields,help:to_sales_target_sale.field_abstract_sales_target__untaxed_sales_total
+#: model:ir.model.fields,help:to_sales_target_sale.field_personal_sales_target__untaxed_sales_total
+#: model:ir.model.fields,help:to_sales_target_sale.field_team_sales_target__untaxed_sales_total
+msgid ""
+"Untaxed Sales Total which is computed by summary of all untaxed sales amount"
+" recorded in Sales Management application."
+msgstr "Tổng doanh số trước thuế được tính bằng cách tóm tắt tất cả số tiền"
+"trước thuế trong ứng dụng Quản lý bán hàng."
+
+#. module: to_sales_target_sale
+#: model:ir.model,name:to_sales_target_sale.model_res_users
+msgid "Users"
+msgstr "Người dùng"

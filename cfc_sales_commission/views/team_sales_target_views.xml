@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<record id="team_sales_target_form_inherit" model="ir.ui.view">
+			<field name="name">team.sales.target.form.inherit</field>
+			<field name="model">team.sales.target</field>
+			<field name="inherit_id" ref="to_sales_target.team_sales_target_form"/>
+			<field name="arch" type="xml">
+				<xpath expr="//button[@name='action_view_invoices']" position="before">
+						<button name="action_view_eighty_commission" type="object"
+								class="oe_stat_button" icon="fa-pencil-square-o"
+								attrs="{'invisible': [('sh_visible_commision_button', '=', False)]}"
+								group="account.group_account_invoice"
+								help="Customer Invoices with commission that match this sales target">
+							<field name="sales_invoices_commission_count" widget="statinfo"
+								string="Commissions" />
+								<field name="sh_visible_commision_button" invisible="1"/>
+						</button>
+						<button name="action_view_hundred_commission" type="object"
+								class="oe_stat_button" icon="fa-pencil-square-o"
+								attrs="{'invisible': [('sh_visible_commision_button_hundred', '=', False)]}"
+								group="account.group_account_invoice"
+								help="Customer Invoices with commission that match this sales target">
+							<field name="sales_invoices_commission_count" widget="statinfo"
+								string="Commissions" />
+								<field name="sh_visible_commision_button_hundred" invisible="1"/>
+						</button>
+						<button name="action_view_deduction" type="object"
+							class="oe_stat_button" icon="fa-pencil-square-o"
+							group="account.group_account_invoice"
+							help="Customer Invoices with deduction that match this sales target">
+							<field name="sales_invoices_deduction_count" widget="statinfo"
+								string="Deductions" />
+						</button>
+				</xpath>
+				<xpath expr="//field[@name='personal_target_ids']/tree/field[@name='state']" position="after">
+					<button name="action_view_sale_person_hundred_commission" type="object"
+							string="Commissions" group="account.group_account_invoice" style="font-size:12px;"
+							attrs="{'invisible': [('target_reached', '&lt;', 100)]}"
+							help="Customer Invoices with commissions for that sales person">
+					</button>
+					<button name="action_view_sale_person_eighty_commission" type="object"
+							string="Commissions" group="account.group_account_invoice" style="font-size:12px;"
+							attrs="{'invisible': ['|', ('target_reached', '&gt;=', 100), ('target_reached', '&lt;', 80)]}"
+							help="Customer Invoices with commissions for that sales person">
+					</button>
+				</xpath>
+			</field>
+		</record>
+	</data>
+</odoo>

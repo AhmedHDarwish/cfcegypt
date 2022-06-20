@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<record id="account_move_views_form_inherit" model="ir.ui.view">
+			<field name="name">account.move.form.inherit</field>
+			<field name="model">account.move</field>
+			<field name="inherit_id" ref="account.view_move_form"/>
+			<field name="arch" type="xml">
+				<field name="ref" position="after">
+					<field name="sh_due_date"/>
+                    <field name="team_leader" invisible="1"/>
+                    <field name="paid_amount" readonly="1" optional="show" invisible="1"/>
+                    <field name="sale_person_eighty_percent_commission_value" invisible="1"/>
+                    <field name="team_leader_eighty_percent_commission_value" invisible="1"/>
+                    <field name="sale_person_hundred_percent_commission_value" invisible="1"/>
+                    <field name="team_leader_hundred_percent_commission_value" invisible="1"/>
+                    <field name="sale_person_deduction" invisible="1"/>
+                    <field name="sh_paid_amount_for_commision" invisible="1"/>
+                </field>
+			</field>
+		</record>
+	</data>
+</odoo>
