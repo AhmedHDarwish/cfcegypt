@@ -110,12 +110,12 @@ class ChequePayment(models.Model):
        
     ], string='Status', default='new', required=True, readonly=True,copy = False)  
     def post_entries(self):
-        outgoing_cheques_to_be_posted = self.env['cheque_system.cheque_payment'].search([('type','=','outbound'),('outbound_status','in',('issued')),('due_date','<=',fields.Date().today())])
+        outgoing_cheques_to_be_posted = self.env['cheque_system.cheque_payment'].search([('type','=','outbound'),('outbound_status','=','issued'),('due_date','<=',fields.Date().today())])
         for cheque in outgoing_cheques_to_be_posted:
             if cheque.to_be_posted_account_move_id.state == 'draft':
                 cheque.to_be_posted_account_move_id.action_post()
             cheque.outbound_status = 'under_deduct'
-        incoming_cheques_to_be_posted = self.env['cheque_system.cheque_payment'].search([('type','=','inbound'),('inbound_status','not in',('handed')),('due_date','<=',fields.Date().today())])
+        incoming_cheques_to_be_posted = self.env['cheque_system.cheque_payment'].search([('type','=','inbound'),('inbound_status','=','handed'),('due_date','<=',fields.Date().today())])
         for cheque in incoming_cheques_to_be_posted:
             if cheque.to_be_posted_account_move_id.state == 'draft':
                 cheque.to_be_posted_account_move_id.action_post()
