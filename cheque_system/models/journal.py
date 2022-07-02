@@ -9,6 +9,7 @@ class AccountJournal(models.Model):
     note_payable_under_deduct_id = fields.Many2one('account.account')
     note_recievable_id = fields.Many2one('account.account')
     cheque_under_collection_id = fields.Many2one('account.account')
+    cheque_bank_account_id = fields.Many2one('account.account',string = 'Bank Account')
     returned_cheques_id = fields.Many2one('account.account')
     cheque_books_ids = fields.One2many('cheque_system.cheque_book', 'journal_id', string='Cheque Books')
     
