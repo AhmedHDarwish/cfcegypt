@@ -16,7 +16,7 @@ class Invocing(models.TransientModel):
     
     def get_domain(self):
         company_ids = [c.id for c in self.env['res.company'].search([])]
-        domain = [('move_id.type','in',['out_invoice', 'out_refund', 'out_receipt']),('move_id.state','=','posted'),('product_id','!=',False),('quantity','>',0),('company_id','in',company_ids)]
+        domain = [('move_id.move_type','in',['out_invoice', 'out_refund', 'out_receipt']),('move_id.state','=','posted'),('product_id','!=',False),('quantity','>',0),('company_id','in',company_ids)]
         if self.sales_team_ids:
             domain.append(('move_id.team_id','in',self.sales_team_ids.ids))
         if self.sales_person_ids:
