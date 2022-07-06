@@ -160,7 +160,7 @@ class ChequePayment(models.Model):
         self.to_be_posted_account_move_id = to_be_posted_move_id.id
         self.inbound_status = 'handed'
     def inbound_validate(self):
-        posted_move_id = self.create_account_move(debit_account = self.journal_id.default_account_id.id,credit_account = self.journal_id.cheque_bank_account_id.id)
+        posted_move_id = self.create_account_move(debit_account = self.journal_id.cheque_bank_account_id.id,credit_account = self.journal_id.cheque_under_collection_id.id)
         posted_move_id.action_post()
         self.inbound_status = 'paid'
                 
