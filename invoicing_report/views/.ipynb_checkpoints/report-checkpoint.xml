@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report
+                id="report_invocing_pdf"
+                model="account.move.line"
+                string="Invoicing Report"
+                report_type="qweb-pdf"
+                name="invoicing_report.invocing_report_pdf"
+                file="invoicing_report.invocing_report_pdf"
+                attachment_use="False"
+                print_report_name="'Invoicing Report'"
+        />
+    <template id="invocing_report_pdf_doc">
+    <t t-set="docs" t-value="docs.with_context(lang=lang)" />
+        <t t-call="web.external_layout">
+        <div  class="page">
+             <style>
+                .manger_info{
+                    margin-bottom:-12px;
+                }
+                .right{
+                    float:right;
+                }
+                .underline{
+                    width:max-content;
+                    padding-bottom: 3px;
+                    border-bottom: black 3px solid;
+                }
+                .long_cell{
+                    width: max-content;
+                }
+            </style>
+            <div class='row'>
+            <div class='col-12'>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <td class='text-center'>Invoice No</td>
+                        <td class='text-center'>So Number</td>
+                        <td class='text-center'>Sales Team</td>
+                        <td class='text-center'>Sales Man</td>
+                        <td class='text-center'>Customer</td>
+                        <td class='text-center'>Product Category</td>
+                        <td class='text-center'>Product</td>
+                        <td class='text-center'>Order Qty</td>
+                        <td class='text-center'>Delivery Qty</td>
+                        <td class='text-center'>Invoice Value</td>
+                        <td class='text-center'>Unit Price</td>
+                        <td class='text-center'>Cost</td>
+                         <td class='text-center'>Margin</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <t t-foreach="docs" t-as="o">
+                        <tr>
+                        <td class='text-center'><span t-esc='o.move_id.name'/></td>
+                        <td class='text-center long_cell'> <span t-esc='o.get_so_name()'/> </td>
+                        <td class='text-center long_cell'>  <span t-esc='o.move_id.team_id.name'/> </td>
+                        <td class='text-center long_cell'> <span t-esc='o.move_id.invoice_user_id.name'/> </td>
+                        <td class='text-center long_cell'> <span t-esc='o.move_id.partner_id.name'/> </td>
+                        <td class='text-center long_cell' >   <span t-esc='o.product_id.categ_id.name'/> </td>
+                        <td class='text-center long_cell' >   <span t-esc='o.product_id.name'/> </td>
+                        <td class='text-center long_cell' >   <span t-esc='o.get_order_qty()'/> </td>
+                        <td class='text-center long_cell' >   <span t-esc='o.get_delivery_qty()'/> </td>
+                        <td class='text-center long_cell' >   <span t-esc='o.price_subtotal'/> </td>
+                        <td class='text-center long_cell' >   <span t-esc='o.price_unit'/> </td>
+                        <td class='text-center long_cell' >   <span t-esc='o.product_id.standard_price'/> </td>
+                        <td class='text-center long_cell' >   <span t-esc='o.get_margin()'/> </td>
+                        </tr>
+                    </t>
+                        <t t-set = 'totals' t-value = 'docs[0].get_totals(docs)'/>
+                        <tr>
+                        <td class='text-center'>Totals</td>
+                        <td class='text-center long_cell'>  </td>
+                        <td class='text-center long_cell'> </td>
+                        <td class='text-center long_cell'> </td>
+                        <td class='text-center long_cell'> </td>
+                        <td class='text-center long_cell' > </td>
+                        <td class='text-center long_cell' > </td>
+                        <td class='text-center long_cell' >   <span t-esc='totals["order_qty"]'/> </td>
+                        <td class='text-center long_cell' >   <span t-esc='totals["delivery_qty"]'/> </td>
+                        <td class='text-center long_cell' >   <span t-esc='totals["invoice_value"]'/> </td>
+                        <td class='text-center long_cell' >   <span t-esc='totals["unit_price"]'/> </td>
+                        <td class='text-center long_cell' >   <span t-esc='totals["cost"]'/> </td>
+                        <td class='text-center long_cell' >   <span t-esc='totals["margin"]'/> </td>
+                        </tr>
+                </tbody>
+            </table>
+            </div>
+            </div>
+        </div>
+        </t>
+    </template>
+    
+    <template id="invocing_report_pdf">
+        <t t-set="full_width" t-value="True"/>
+        <t t-call="web.html_container">
+            <t t-set="data_report_landscape" t-value="True"/>
+            <t t-set="lang" t-value="user.partner_id.lang"/>
+            <t t-call="invoicing_report.invocing_report_pdf_doc" t-lang="lang"/>
+        </t>
+    </template>
+    </data>
+</odoo>

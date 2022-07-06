@@ -1,0 +1,12 @@
+<odoo>
+    <data>
+        <record id='group_can_see_invoicing_report' model='res.groups'>
+            <field name='name'>Can see Invoicing Report</field>
+            <field name='category_id' ref="base.module_category_hidden"/>
+        </record>
+        <record id='group_can_see_cost_analysis' model='res.groups'>
+            <field name='name'>Can see cost analysis</field>
+            <field name='category_id' ref="base.module_category_hidden"/>
+        </record>
+    </data>
+</odoo>
