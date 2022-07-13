@@ -51,7 +51,7 @@ class TeamSalesTarget(models.Model):
             commissions.unlink()
         if deductions:
             deductions.unlink()
-        payment_ids = self.env['account.payment'].sudo().search([('payment_date','>=',self.start_date),('payment_date','<=',self.end_date),('payment_type','=','inbound')])
+        payment_ids = self.env['account.payment'].sudo().search([('date','>=',self.start_date),('date','<=',self.end_date),('payment_type','=','inbound')])
         if payment_ids:
             for payment in payment_ids:
                 if payment.reconciled_invoice_ids:
