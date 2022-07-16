@@ -26,6 +26,7 @@
     'data': [
         'views/groups.xml',
         'views/report.xml',
+        'views/product_category.xml',
         'wizard/invocing_report_options.xml',
         'report/report.xml',
         'security/ir.model.access.csv',

@@ -19,8 +19,16 @@ class Invocing(models.TransientModel):
         domain = [('move_id.move_type','in',['out_invoice', 'out_refund', 'out_receipt']),('move_id.state','=','posted'),('product_id','!=',False),('quantity','>',0),('company_id','in',company_ids)]
         if self.sales_team_ids:
             domain.append(('move_id.team_id','in',self.sales_team_ids.ids))
+            domain.append(('move_id.partner_id.team_id','in',self.sales_team_ids.ids + [False]))
+            domain.append('|')
+            domain.append(('product_id.categ_id.sales_team_ids','in',self.sales_team_ids.ids))
+            domain.append(('product_id.categ_id.sales_team_ids','=',False))
         if self.sales_person_ids:
             domain.append(('move_id.invoice_user_id','in',self.sales_person_ids.ids))
+            domain.append(('move_id.partner_id.user_id','in',self.sales_person_ids.ids +  [False]))
+            domain.append('|')
+            domain.append(('product_id.categ_id.sales_team_ids','in',self.sales_team_ids.ids))
+            domain.append(('product_id.categ_id.sales_team_ids','=',False))
         if self.customer_ids:
             domain.append(('move_id.partner_id','in',self.customer_ids.ids))
         if self.product_category_ids:

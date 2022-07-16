@@ -87,7 +87,7 @@ class PartnerXlsx(models.AbstractModel):
         sheet.write(row,8,line.get_order_qty(),formats['normal_format'])
         sheet.write(row,9,line.get_delivery_qty(),formats['normal_format'])
         sheet.write(row,10,line.get_value_without_tax(),formats['normal_format'])
-        sheet.write(row,11,line.price_unit,formats['normal_format'])
+        sheet.write(row,11,line.convert_to_egp(line.price_unit),formats['normal_format'])
         if self.can_see_cost_analysis():
             cost = line.product_id.standard_price or line.product_id.lst_price
             sheet.write(row,12,cost,formats['normal_format'])

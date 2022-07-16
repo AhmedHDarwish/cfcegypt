@@ -1,10 +1,20 @@
 from odoo import models, fields, api
 from odoo.exceptions import Warning, UserError, ValidationError
 
+class Categ(models.Model):
+    _inherit = 'product.category'
+    sales_team_ids = fields.Many2many(comodel_name="crm.team", string="Sales Team", required=False, )
+    sales_person_ids = fields.Many2many('res.users')
 class AccountMoveLine(models.Model):
     _inherit = 'account.move.line'
     
-
+    def convert_to_egp(self,amount):
+        egp_currency = self.env['res.currency'].search([('name','=','EGP')])
+        if not(egp_currency):
+            raise ValidationError('No egyption currency found')
+        egp_currency = egp_currency[0]
+        return self.move_id.currency_id.with_context(date=self.move_id.invoice_date).compute(amount, egp_currency)
+        
     def round_float(self,amount):
         return float("{:.2f}".format(amount))
     def get_cost(self,product):
@@ -25,12 +35,12 @@ class AccountMoveLine(models.Model):
     def get_related_so_lines(self):
         return self.sale_line_ids
     def get_margin(self):
-        return self.round_float(self.price_unit - self.product_id.standard_price)
+        return self.round_float(self.convert_to_egp(self.price_unit) - self.product_id.standard_price)
     def get_total_cost(self):
         cost = self.get_cost(self.product_id)
         return self.round_float(self.get_order_qty() * cost)
     def get_total_margin(self):
-        return self.round_float(self.price_subtotal - self.get_total_cost())
+        return self.round_float(self.convert_to_egp(self.price_subtotal) - self.get_total_cost())
     
     def get_order_qty(self):
         lines = self.get_related_so_lines()
@@ -46,7 +56,7 @@ class AccountMoveLine(models.Model):
     def get_so_name(self):
         return self.sale_line_ids[0].order_id.name if len(self.sale_line_ids) > 0 else ''
     def get_value_without_tax(self):
-        return self.round_float(self.price_unit * self.quantity)
+        return self.round_float(self.convert_to_egp(self.price_unit) * self.quantity)
         
 
         
