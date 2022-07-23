@@ -58,13 +58,14 @@ class PartnerXlsx(models.AbstractModel):
         sheet_1.write('H1', 'Invoice Date',formats['bold_format_green'])
         sheet_1.write('I1', 'Order Qty',formats['bold_format_green'])
         sheet_1.write('J1', 'Delivery Qty',formats['bold_format_green'])
-        sheet_1.write('K1', 'Invoice Value',formats['bold_format_green'])
-        sheet_1.write('L1', 'Unit Price',formats['bold_format_green'])
+        sheet_1.write('K1', 'Total Delivery Qty',formats['bold_format_green'])
+        sheet_1.write('L1', 'Invoice Value',formats['bold_format_green'])
+        sheet_1.write('M1', 'Unit Price',formats['bold_format_green'])
         if self.can_see_cost_analysis():
-            sheet_1.write('M1', 'Unit Cost',formats['bold_format_green'])
-            sheet_1.write('N1', 'Unit Margin',formats['bold_format_green'])
-            sheet_1.write('O1', 'Total Cost',formats['bold_format_green'])
-            sheet_1.write('P1', 'Total Margin',formats['bold_format_green'])
+            sheet_1.write('N1', 'Unit Cost',formats['bold_format_green'])
+            sheet_1.write('O1', 'Unit Margin',formats['bold_format_green'])
+            sheet_1.write('P1', 'Total Cost',formats['bold_format_green'])
+            sheet_1.write('Q1', 'Total Margin',formats['bold_format_green'])
         return 2
         
 
@@ -85,15 +86,16 @@ class PartnerXlsx(models.AbstractModel):
         sheet.write(row,6,line.move_id.name,formats['normal_format'])
         sheet.write(row,7,date,formats['normal_format'])
         sheet.write(row,8,line.get_order_qty(),formats['normal_format'])
-        sheet.write(row,9,line.get_delivery_qty(),formats['normal_format'])
-        sheet.write(row,10,line.get_value_without_tax(),formats['normal_format'])
-        sheet.write(row,11,line.convert_to_egp(line.price_unit),formats['normal_format'])
+        sheet.write(row,9,line.quantity,formats['normal_format'])
+        sheet.write(row,10,line.get_delivery_qty(),formats['normal_format'])
+        sheet.write(row,11,line.get_value_without_tax(),formats['normal_format'])
+        sheet.write(row,12,line.convert_to_egp(line.price_unit),formats['normal_format'])
         if self.can_see_cost_analysis():
             cost = line.product_id.standard_price or line.product_id.lst_price
-            sheet.write(row,12,cost,formats['normal_format'])
-            sheet.write(row,13,line.get_margin(),formats['normal_format'])
-            sheet.write(row,14,line.get_total_cost(),formats['normal_format'])
-            sheet.write(row,15,line.get_total_margin(),formats['normal_format'])
+            sheet.write(row,13,cost,formats['normal_format'])
+            sheet.write(row,14,line.get_margin(),formats['normal_format'])
+            sheet.write(row,15,line.get_total_cost(),formats['normal_format'])
+            sheet.write(row,16,line.get_total_margin(),formats['normal_format'])
         
     
     def write_totals_line(self,sheet,row,formats,totals_dict = {}):
@@ -101,13 +103,14 @@ class PartnerXlsx(models.AbstractModel):
             sheet.merge_range(f'A{row + 1}:H{row + 1}', totals_dict['name'],formats['bold_format_grey'])
             sheet.write(row,8,totals_dict['order_qty'],formats['bold_format_grey'])
             sheet.write(row,9,totals_dict['delivery_qty'],formats['bold_format_grey'])
-            sheet.write(row,10,totals_dict['invoice_value'],formats['bold_format_grey'])
-            sheet.write(row,11,totals_dict['unit_price'],formats['bold_format_grey'])
+            sheet.write(row,10,totals_dict['delivery_total_qty'],formats['bold_format_grey'])
+            sheet.write(row,11,totals_dict['invoice_value'],formats['bold_format_grey'])
+            sheet.write(row,12,totals_dict['unit_price'],formats['bold_format_grey'])
             if self.can_see_cost_analysis():
-                sheet.write(row,12,totals_dict['cost'],formats['bold_format_grey'])
-                sheet.write(row,13,totals_dict['margin'],formats['bold_format_grey'])
-                sheet.write(row,14,totals_dict['total_cost'],formats['bold_format_grey'])
-                sheet.write(row,15,totals_dict['total_margin'],formats['bold_format_grey'])
+                sheet.write(row,13,totals_dict['cost'],formats['bold_format_grey'])
+                sheet.write(row,14,totals_dict['margin'],formats['bold_format_grey'])
+                sheet.write(row,15,totals_dict['total_cost'],formats['bold_format_grey'])
+                sheet.write(row,16,totals_dict['total_margin'],formats['bold_format_grey'])
     def write_all_lines(self,sheet,lines,formats,row_start = 1):
         """
         lines : [{

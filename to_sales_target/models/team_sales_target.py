@@ -124,25 +124,6 @@ class TeamSalesTarget(models.Model):
                                                             })
                                                 if commission_vals:
                                                     commission_id = self.env['sh.sale.commision.model'].sudo().create(commission_vals)
-                                            # elif datetime_obj.date() > payment_last_date:
-                                            #     deduction_vals = {
-                                            #         'type':'deduction',
-                                            #         'invoice_ref':invoice.id,
-                                            #         'partner_id':invoice.partner_id.id,
-                                            #         'invoice_date':invoice.invoice_date,
-                                            #         'source_document':invoice.invoice_origin,
-                                            #         'team_id':invoice.team_id.id,
-                                            #         'team_leader':invoice.team_leader.id,
-                                            #         'user_id':invoice.invoice_user_id.id,
-                                            #         'company_id':invoice.company_id.id,
-                                            #         'due_date':invoice.sh_due_date,
-                                            #         'invoice_total':invoice.amount_total,
-                                            #         'deduction_amount':dictt.get('amount'),
-                                            #         'payment_amount':dictt.get('amount'),
-                                            #         'payment_date':datetime_obj
-                                            #     }
-                                            #     if deduction_vals:
-                                            #         deduction_id = self.env['sh.sale.commision.model'].sudo().create(deduction_vals)
         deduction_invoice_ids = self.env['account.move'].sudo().search([
             ('invoice_date','>=',self.start_date),
             ('invoice_date','<=',self.end_date),

@@ -23,7 +23,8 @@ class AccountMoveLine(models.Model):
         totals = {}
         for line in lines:
             totals['order_qty'] = totals.get('order_qty',0) + line.get_order_qty() 
-            totals['delivery_qty'] = totals.get('delivery_qty',0) + line.get_delivery_qty() 
+            totals['delivery_total_qty'] = totals.get('delivery_qty',0) + line.get_delivery_qty()
+            totals['delivery_qty'] = totals.get('delivery_qty',0) + line.quantity
             totals['invoice_value'] = totals.get('invoice_value',0) + line.get_value_without_tax()
             totals['unit_price'] = totals.get('unit_price',0) + line.price_unit
             cost = self.get_cost(line.product_id)
@@ -38,7 +39,7 @@ class AccountMoveLine(models.Model):
         return self.round_float(self.convert_to_egp(self.price_unit) - self.product_id.standard_price)
     def get_total_cost(self):
         cost = self.get_cost(self.product_id)
-        return self.round_float(self.get_order_qty() * cost)
+        return self.round_float(cost * self.quantity)
     def get_total_margin(self):
         return self.round_float(self.convert_to_egp(self.price_subtotal) - self.get_total_cost())
     
