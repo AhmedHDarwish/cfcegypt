@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<record model="ir.ui.view" id="crm_team_view_form">
+		<field name="name">crm.team.form</field>
+		<field name="model">crm.team</field>
+		<field name="inherit_id" ref="sales_team.crm_team_view_form" />
+		<field name="arch" type="xml">
+			<xpath expr="//notebook" position="inside">
+				<page string="Sales Target" name="team_target">
+					<field name="team_sales_target_ids" nolabel="1"
+						context="{'default_crm_team_id': active_id}">
+						<tree string="Team Sales Target">
+							<field name="start_date" />
+							<field name="end_date" />
+							<field name="target" />
+							<field name="state" />
+						</tree>
+					</field>
+				</page>
+			</xpath>
+		</field>
+	</record>
+
+</odoo>

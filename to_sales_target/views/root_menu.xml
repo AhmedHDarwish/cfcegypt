@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<menuitem id="team_sales_target_root_menu" sequence="5"
+			name="Sales Target"
+			web_icon="to_sales_target,static/description/icon.png"
+			groups="sales_team.group_sale_salesman" />
+
+		<menuitem id="team_sales_target_menu" sequence="0"
+			name="Team Sales Target" parent="team_sales_target_root_menu" />
+
+		<menuitem id="personal_sales_target_menu" sequence="1"
+			name="Personal Sales Target" parent="team_sales_target_root_menu" />
+
+		<menuitem id="report_menu" sequence="2" name="Report"
+			parent="team_sales_target_root_menu" />
+
+	</data>
+</odoo>

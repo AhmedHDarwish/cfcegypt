@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<record id="sh_commission_form_view" model="ir.ui.view">
+		<field name="name">sh.sale.commision.model</field>
+		<field name="model">sh.sale.commision.model</field>
+		<field name="arch" type="xml">
+			<form string="Commision/Deduction">
+				<group>
+					<group>
+						<field name="type"/>
+						<field name="invoice_ref"/>
+						<field name="partner_id"/>
+						<field name="invoice_date"/>
+						<field name="source_document"/>
+						<field name="team_id"/>
+						<field name="team_leader"/>
+					</group>
+					<group>
+						<field name="user_id"/>
+						<field name="company_id"/>
+						<field name="due_date"/>
+						<field name="deduction_amount" attrs="{'invisible':[('type','=','commission')]}"/>
+						<field name="payment_date"/>
+						<field name="payment_amount"/>
+						<field name="saleperson_eighty_percentage" attrs="{'invisible':[('type','=','deduction')]}"/>
+						<field name="saleperson_eighty_commission_amount" attrs="{'invisible':[('type','=','deduction')]}"/>
+						<field name="saleperson_hundred_percentage" attrs="{'invisible':[('type','=','deduction')]}"/>
+						<field name="saleperson_hundred_commission_amount" attrs="{'invisible':[('type','=','deduction')]}"/>
+						<field name="leader_eighty_percentage" attrs="{'invisible':[('type','=','deduction')]}"/>
+						<field name="leder_eighty_commission_amount" attrs="{'invisible':[('type','=','deduction')]}"/>
+						<field name="leader_hundred_percentage" attrs="{'invisible':[('type','=','deduction')]}"/>
+						<field name="leder_hundred_commission_amount" attrs="{'invisible':[('type','=','deduction')]}"/>
+						<field name="invoice_total"/>
+					</group>
+				</group>
+			</form>
+		</field>
+	</record>
+	<record id="sh_commission_tree_view" model="ir.ui.view">
+		<field name="name">sh.sale.commision.model</field>
+		<field name="model">sh.sale.commision.model</field>
+		<field name="arch" type="xml">
+			<tree string="Commision/Deduction">
+				<field name="type"/>
+				<field name="invoice_ref"/>
+				<field name="partner_id"/>
+				<field name="invoice_date"/>
+				<field name="source_document"/>
+				<field name="team_id"/>
+				<field name="team_leader"/>
+				<field name="user_id"/>
+				<field name="company_id"/>
+				<field name="due_date"/>
+				<field name="deduction_amount" attrs="{'invisible':[('type','=','commission')]}"/>
+				<field name="payment_date"/>
+				<field name="payment_amount"/>
+				<field name="saleperson_eighty_percentage" attrs="{'invisible':[('type','=','deduction')]}"/>
+				<field name="saleperson_eighty_commission_amount" attrs="{'invisible':[('type','=','deduction')]}"/>
+				<field name="saleperson_hundred_percentage" attrs="{'invisible':[('type','=','deduction')]}"/>
+				<field name="saleperson_hundred_commission_amount" attrs="{'invisible':[('type','=','deduction')]}"/>
+				<field name="leader_eighty_percentage" attrs="{'invisible':[('type','=','deduction')]}"/>
+				<field name="leder_eighty_commission_amount" attrs="{'invisible':[('type','=','deduction')]}"/>
+				<field name="leader_hundred_percentage" attrs="{'invisible':[('type','=','deduction')]}"/>
+				<field name="leder_hundred_commission_amount" attrs="{'invisible':[('type','=','deduction')]}"/>
+				<field name="invoice_total"/>
+			</tree>
+		</field>
+	</record>
+</odoo>

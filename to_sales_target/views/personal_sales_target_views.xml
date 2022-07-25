@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+
+		<record id="personal_sales_target_form" model="ir.ui.view">
+			<field name="name">personal.sales.target.form</field>
+			<field name="model">personal.sales.target</field>
+			<field name="arch" type="xml">
+				<form>
+					<header>
+						<field name="state" readonly="1" statusbar_visible="draft,confirmed,approved"
+							widget="statusbar" />
+						<button name="action_generate_commision" string="Generate Commision/Deduction" type="object" class="btn btn-primary"/>
+					</header>
+					<sheet>
+						<div class="oe_button_box" name="button_box">
+                        </div>
+						<group>
+							<group>
+								<field name="sale_person_id" />
+								<field name="team_target_id" />
+							</group>
+							<group>
+								<field name="start_date" />
+								<field name="end_date" />
+								<field name="target" />
+							</group>
+						</group>
+						<notebook>
+						</notebook>
+					</sheet>
+					<div class="oe_chatter">
+						<field name="message_follower_ids" widget="mail_followers"
+							groups="base.group_user" />
+						<field name="message_ids" widget="mail_thread" />
+					</div>
+				</form>
+			</field>
+		</record>
+
+		<record id="personal_sales_target_tree" model="ir.ui.view">
+			<field name="name">personal.sales.target.tree</field>
+			<field name="model">personal.sales.target</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Personal Sales Target" edit="0" create="0">
+					<field name="sale_person_id" />
+					<field name="start_date" />
+					<field name="end_date" />
+					<field name="target" />
+					<field name="state" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="view_personal_sales_target_graph" model="ir.ui.view">
+			<field name="name">personal.sales.target.graph</field>
+			<field name="model">personal.sales.target</field>
+			<field name="arch" type="xml">
+				<graph string="Personal Sales Target" stacked="True">
+					<field name="sale_person_id" type="row" />
+					<field name="end_date" interval="month" type="col" />
+					<field name="target" type="measure" />
+				</graph>
+			</field>
+		</record>
+
+		<record id="view_personal_sales_target_pivot" model="ir.ui.view">
+			<field name="name">personal.sales.target.pivot</field>
+			<field name="model">personal.sales.target</field>
+			<field name="arch" type="xml">
+				<pivot string="Personal Sales Target">
+					<field name="sale_person_id" type="row" />
+					<field name="end_date" interval="month" type="col" />
+					<field name="target" type="measure" />
+				</pivot>
+			</field>
+		</record>
+
+
+		<record id="personal_sales_target_search" model="ir.ui.view">
+			<field name="name">personal.sales.target.search</field>
+			<field name="model">personal.sales.target</field>
+			<field name="arch" type="xml">
+				<search string="Search Personal Sales Target">
+					<field name="sale_person_id" />
+					<field name="start_date" />
+					<field name="end_date" />
+					<separator />
+					<filter name="my_target" string="My Sales Target"
+						domain="[('sale_person_id','=', uid)]" />
+					<separator />
+					<group expand="0" string="Group By">
+						<filter string="Sale Person" name="groupby_sale_person"
+							context="{'group_by':'sale_person_id'}" />
+						<filter string="Start Date" name="groupby_start_date"
+							context="{'group_by':'start_date'}" />
+						<filter string="End Date" name="groupby_end_date" context="{'group_by':'end_date'}" />
+					</group>
+				</search>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="action_personal_sales_target">
+			<field name="name">Personal Sales Target</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">personal.sales.target</field>
+			<field name="view_mode">tree,pivot,graph,form</field>
+			<field name="search_view_id" ref="personal_sales_target_search" />
+			<field name="context">{'search_default_groupby_sale_person': 1}</field>
+		</record>
+
+		<record model="ir.actions.act_window" id="action_personal_sales_target_my_target">
+			<field name="name">My Sales Target</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">personal.sales.target</field>
+			<field name="view_mode">tree,pivot,graph,form</field>
+			<field name="search_view_id" ref="personal_sales_target_search" />
+			<field name="context">{'search_default_my_target':1}</field>
+			<field name="help" type="html">
+                <p class="oe_view_nocontent_create">Contact your sales team leader to ask for your sales targets</p>
+            </field>
+		</record>
+
+		<menuitem id="personal_sales_target_all_target_menu" name="All Sales Targets"
+			parent="personal_sales_target_menu" action="action_personal_sales_target"
+			sequence="1" groups="to_sales_team_advanced.group_sale_team_leader" />
+
+		<menuitem id="personal_sales_target_my_target_menu" name="My Sales Targets"
+			parent="personal_sales_target_menu" action="action_personal_sales_target_my_target"
+			sequence="2" />
+
+
+	</data>
+</odoo>

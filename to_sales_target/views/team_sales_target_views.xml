@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<record id="team_sales_target_form" model="ir.ui.view">
+			<field name="name">team.sales.target.form</field>
+			<field name="model">team.sales.target</field>
+			<field name="arch" type="xml">
+				<form string="Team Sales Target">
+					<header>
+						<button name="action_confirm" type="object" states="draft"
+							string="Confirm" class="oe_highlight" />
+						<button name="action_compute" type="object" states="draft"
+							string="Compute" class="oe_highlight" />
+						<button name="action_approve" type="object"
+							states="confirmed" string="Approve" class="oe_highlight"
+							groups="sales_team.group_sale_salesman_all_leads" />
+						<button string="Refuse" name="action_refuse"
+							states="confirmed,approved" type="object"
+							groups="sales_team.group_sale_salesman_all_leads" />
+						<button name="action_draft" type="object"
+							states="refused,cancelled,approved" string="Set to Draft"
+							class="oe_highlight" />
+						<button name="action_cancel" type="object"
+							states="confirmed,approved" string="Cancel" />
+						<button name="action_generate_commision" string="Generate Commision/Deduction" type="object" class="btn btn-primary"/>
+						<field name="state" readonly="1"
+							statusbar_visible="draft,confirmed,approved" widget="statusbar" />
+					</header>
+					<sheet>
+						<div class="oe_button_box" name="button_box">
+						</div>
+						<group>
+							<group>
+								<field name="crm_team_id" />
+
+							</group>
+							<group>
+								<field name="start_date" />
+								<field name="end_date" />
+								<field name="target" />
+							</group>
+						</group>
+						<notebook>
+							<page string="Personal Sales Target" name="personal_target">
+								<field name="personal_target_ids" nolabel="1"
+									context="{'team_target_id': active_id}">
+									<tree string="Personal Sales Target" nolabel="1"
+										editable="bottom" create="false">
+										<field name="sale_person_id" />
+										<field name="start_date" invisible="1" />
+										<field name="end_date" invisible="1" />
+										<field name="target" />
+										<field name="state" />
+									</tree>
+								</field>
+							</page>
+							<!-- <page string="Commission">
+								<field name="target_commision_ids"/>
+							</page>
+							<page string="Deduction">
+								<field name="target_deduction_ids"/>
+							</page> -->
+						</notebook>
+					</sheet>
+					<div class="oe_chatter">
+						<field name="message_follower_ids" widget="mail_followers"
+							groups="base.group_user" />
+						<field name="message_ids" widget="mail_thread" />
+					</div>
+				</form>
+			</field>
+		</record>
+
+		<record id="team_sales_target_tree" model="ir.ui.view">
+			<field name="name">team.sales.target.tree</field>
+			<field name="model">team.sales.target</field>
+			<field name="type">tree</field>
+			<field name="arch" type="xml">
+				<tree string="Team Sales Target">
+					<field name="crm_team_id" />
+					<field name="start_date" />
+					<field name="end_date" />
+					<field name="target" />
+					<field name="state" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="view_team_sales_target_graph" model="ir.ui.view">
+			<field name="name">team.sales.target.graph</field>
+			<field name="model">team.sales.target</field>
+			<field name="arch" type="xml">
+				<graph string="Team Sales Target">
+					<field name="crm_team_id" type="row" />
+					<field name="end_date" interval="month" type="col" />
+					<field name="target" type="measure" />
+				</graph>
+			</field>
+		</record>
+
+		<record id="view_team_sales_target_pivot" model="ir.ui.view">
+			<field name="name">team.sales.target.pivot</field>
+			<field name="model">team.sales.target</field>
+			<field name="arch" type="xml">
+				<pivot string="Team Sales Target">
+					<field name="crm_team_id" type="row" />
+					<field name="end_date" interval="month" type="col" />
+					<field name="target" type="measure" />
+				</pivot>
+			</field>
+		</record>
+
+		<record id="team_sales_target_search" model="ir.ui.view">
+			<field name="name">team.sales.target.search</field>
+			<field name="model">team.sales.target</field>
+			<field name="arch" type="xml">
+				<search string="Search Team Sales Target">
+					<field name="crm_team_id" />
+					<field name="start_date" />
+					<field name="end_date" />
+					<separator />
+					<filter name="draft_target" string="Draft"
+						domain="[('state','=', 'draft')]" />
+					<filter name="confirmed_target" string="Waiting Approved"
+						domain="[('state','=', 'confirmed')]" />
+					<filter name="approved_target" string="Approved"
+						domain="[('state','=', 'approved')]" />
+					<filter name="refused_target" string="Refused"
+						domain="[('state','=', 'refused')]" />
+					<separator />
+					<group expand="0" string="Group By">
+						<filter string="Sales Team" name="groupby_team"
+							context="{'group_by':'crm_team_id'}" />
+						<filter string="Start Date" name="groupby_start_date"
+							context="{'group_by':'start_date'}" />
+						<filter string="End Date" name="groupby_end_date"
+							context="{'group_by':'end_date'}" />
+					</group>
+				</search>
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window"
+			id="action_team_sales_target">
+			<field name="name">Team Sales Target</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">team.sales.target</field>
+			<field name="view_mode">tree,pivot,graph,form</field>
+			<field name="search_view_id" ref="team_sales_target_search" />
+			<field name="context">{'search_default_draft_target':1}</field>
+		</record>
+
+		<record model="ir.actions.act_window"
+			id="action_team_sales_target_to_approve">
+			<field name="name">To Approve Sales Targets</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">team.sales.target</field>
+			<field name="view_mode">tree,pivot,graph,form</field>
+			<field name="search_view_id" ref="team_sales_target_search" />
+			<field name="context">{'search_default_confirmed_target':1,
+				'search_default_groupby_team': 1}
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window"
+			id="action_team_sales_target_approved">
+			<field name="name">Approved Sales Targets</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">team.sales.target</field>
+			<field name="view_mode">tree,pivot,graph,form</field>
+			<field name="search_view_id" ref="team_sales_target_search" />
+			<field name="context">{'search_default_approved_target':1,
+				'search_default_groupby_team': 1}
+			</field>
+		</record>
+
+		<record model="ir.actions.act_window"
+			id="action_team_sales_target_refused">
+			<field name="name">Refused Sales Targets</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">team.sales.target</field>
+			<field name="view_mode">tree,pivot,graph,form</field>
+			<field name="search_view_id" ref="team_sales_target_search" />
+			<field name="context">{'search_default_refused_target':1,
+				'search_default_groupby_team': 1}
+			</field>
+		</record>
+
+		<menuitem id="team_sales_target_draft_menu"
+			name="Draft Targets" parent="team_sales_target_menu"
+			action="action_team_sales_target" sequence="1" />
+
+		<menuitem id="team_sales_target_to_approve_menu"
+			name="To Approve" parent="team_sales_target_menu"
+			action="action_team_sales_target_to_approve" sequence="2" />
+
+		<menuitem id="team_sales_target_approved_menu"
+			name="Approved" parent="team_sales_target_menu"
+			action="action_team_sales_target_approved" sequence="3" />
+			
+		<menuitem id="team_sales_target_refused_menu"
+			name="Refused" parent="team_sales_target_menu"
+			action="action_team_sales_target_refused" sequence="4" />
+
+	</data>
+</odoo>

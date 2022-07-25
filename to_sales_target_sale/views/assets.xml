@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="assets_backend_sales_team_inherit" name="Sales Team Dashboard" inherit_id="web.assets_backend_legacy_lazy">
+        <xpath expr="." position="inside">
+        	<script type="text/javascript" src="/to_sales_target_sale/static/src/js/sales_team_dashboard_inherit.js"></script>
+        </xpath>
+    </template>
+</odoo>

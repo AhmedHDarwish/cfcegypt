@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<record model="ir.ui.view" id="crm_team_salesteams_view_form">
+		<field name="name">crm.team.form</field>
+		<field name="model">crm.team</field>
+		<field name="inherit_id" ref="sale.crm_team_salesteams_view_form" />
+		<field name="arch" type="xml">
+			<xpath expr="//field[@name='invoiced_target']" position="attributes">
+				<attribute name="attrs">{'readonly':[('team_sales_target_ids','!=',[])]}</attribute>
+			</xpath>
+		</field>
+	</record>
+	
+	<record model="ir.ui.view" id="crm_team_view_form">
+		<field name="name">crm.team.form</field>
+		<field name="model">crm.team</field>
+		<field name="inherit_id" ref="to_sales_target.crm_team_view_form" />
+		<field name="arch" type="xml">
+			<xpath expr="//field[@name='team_sales_target_ids']/tree/field[@name='target']" position="after">
+				<field name="target_reached" widget="progressbar" />
+			</xpath>
+		</field>
+	</record>
+
+</odoo>

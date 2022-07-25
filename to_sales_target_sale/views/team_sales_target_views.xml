@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<record id="team_sales_target_form" model="ir.ui.view">
+			<field name="name">team.sales.target.form</field>
+			<field name="model">team.sales.target</field>
+			<field name="inherit_id"
+				ref="to_sales_target.team_sales_target_form" />
+			<field name="arch" type="xml">
+				<xpath expr="//div[@name='button_box']" position="inside">
+					<div class="oe_button_box" name="button_box">
+						<button name="action_view_sale_orders" type="object"
+							groups="to_sales_team_advanced.group_sale_team_leader"
+							class="oe_stat_button" icon="fa-usd"
+							help="Sales Orders that match this target">
+							<field name="sale_orders_count" widget="statinfo" />
+						</button>
+						<button name="action_view_invoices" type="object"
+							class="oe_stat_button" icon="fa-pencil-square-o"
+							group="account.group_account_invoice"
+							help="Customer Invoices that match this sales target">
+							<field name="sales_invoices_count" widget="statinfo"
+								string="Invoices" />
+						</button>
+					</div>
+				</xpath>
+				<xpath expr="//page[@name='personal_target']" position="after">
+					<page name="kpi" string="Sales KPI">
+						<group>
+							<group name="sales" string="Sales">
+								<field name="untaxed_sales_total" string="Sales Total" />
+								<field name="sales_target_reached" widget="progressbar"
+									string="Target Reached" />
+							</group>
+							<group name="invoiced" string="Invoiced">
+								<field name="sales_invoiced" />
+								<field name="invoiced_target_reached" widget="progressbar"
+									string="Target Reached" />
+							</group>
+							<group name="all_channels" string="All Channels">
+								<field name="sales_total" />
+								<field name="target_reached" widget="progressbar" />
+							</group>
+						</group>
+					</page>
+				</xpath>
+				<xpath
+					expr="//field[@name='personal_target_ids']/tree/field[@name='target']"
+					position="after">
+					<field name="target_reached" widget="progressbar" />
+				</xpath>
+			</field>
+		</record>
+
+		<record id="team_sales_target_tree" model="ir.ui.view">
+			<field name="name">team.sales.target.tree</field>
+			<field name="model">team.sales.target</field>
+			<field name="inherit_id"
+				ref="to_sales_target.team_sales_target_tree" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='target']" position="after">
+					<field name="sales_total" />
+					<field name="target_reached" widget="progressbar" />
+				</xpath>
+			</field>
+		</record>
+
+		<record id="view_team_sales_target_graph" model="ir.ui.view">
+			<field name="name">team.sales.target.graph</field>
+			<field name="model">team.sales.target</field>
+			<field name="inherit_id"
+				ref="to_sales_target.view_team_sales_target_graph" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='target']" position="after">
+					<field name="sales_total" type="measure" />
+					<field name="target_reached" type="measure"
+						string="Target Comleted (%)" />
+				</xpath>
+			</field>
+		</record>
+
+		<record id="view_team_sales_target_pivot" model="ir.ui.view">
+			<field name="name">team.sales.target.pivot</field>
+			<field name="model">team.sales.target</field>
+			<field name="inherit_id"
+				ref="to_sales_target.view_team_sales_target_pivot" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='target']" position="after">
+					<field name="sales_total" type="measure" />
+					<field name="target_reached" type="measure"
+						string="Target Comleted (%)" />
+				</xpath>
+			</field>
+		</record>
+
+		<record id="team_sales_target_search" model="ir.ui.view">
+			<field name="name">team.sales.target.search</field>
+			<field name="model">team.sales.target</field>
+			<field name="inherit_id"
+				ref="to_sales_target.team_sales_target_search" />
+			<field name="arch" type="xml">
+				<xpath expr="//filter[@name='refused_target']"
+					position="after">
+					<separator />
+					<filter name="target_reached" string="Target Reached"
+						domain="[('target_reached', '&gt;=', 100.0)]" />
+					<filter name="target_uncompleted" string="Target Unreached"
+						domain="[('target_reached', '&lt;', 100.0)]" />
+				</xpath>
+			</field>
+		</record>
+	</data>
+</odoo>
