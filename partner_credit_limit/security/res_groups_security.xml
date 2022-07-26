@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="group_over_credit_period" model="res.groups">
+        <field name="name">Allow Over Credit Limit / Days</field>
+    </record>
+</odoo>
