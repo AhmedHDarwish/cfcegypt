@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<record id="personal_sales_target_form_inherit" model="ir.ui.view">
+			<field name="name">personal.sales.target.form</field>
+			<field name="model">personal.sales.target</field>
+			<field name="inherit_id"
+				ref="to_sales_target_sale.personal_sales_target_form" />
+			<field name="arch" type="xml">
+				<xpath expr="//page[@name='kpi']" position="after">
+					<!-- <page string="Commisions">
+						<field name="commision_ids"/>
+					</page> -->
+					<!-- <page string="Deductions">
+						<field name="deduction_ids" context="{'tree_view_ref': 'cfc_sales_commission.view_invoice_deduction_tree'}" group="account.group_account_invoice"/>
+					</page> -->
+				</xpath>
+				<xpath expr="//button[@name='action_view_invoices']" position="after">
+					<button name="action_view_person_commisions" type="object"
+							class="oe_stat_button" icon="fa-pencil-square-o">
+							<field name="sh_person_commision_count" widget="statinfo"
+								string="Commissions" />
+						</button>
+					<button name="action_view_person_deductions" type="object"
+							class="oe_stat_button" icon="fa-pencil-square-o">
+							<field name="sh_person_deduction_count" widget="statinfo"
+								string="Deductions" />
+						</button>
+				</xpath>
+			</field>
+		</record>
+	</data>
+</odoo>

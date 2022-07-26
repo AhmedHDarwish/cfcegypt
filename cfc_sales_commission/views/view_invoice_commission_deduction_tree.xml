@@ -1,0 +1,512 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_invoice_eighty_commission_tree" model="ir.ui.view">
+            <field name="name">account.invoice.eighty.commission.tree</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_invoice_tree"/>
+            <field name="mode">primary</field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="attributes">
+                    <attribute name="string">Name(80)</attribute>
+                </xpath>
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="invoice_partner_display_name" string="Customer"/>
+                    <field name="invoice_date" string="Invoice Date"/>
+                </xpath>
+                <xpath expr="//field[@name='invoice_origin']" position="after">
+                    <field name="team_id" />
+                    <field name="team_leader" />
+                    <field name="invoice_user_id" />
+                </xpath>
+                <xpath expr="//field[@name='amount_untaxed_signed']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='state']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='invoice_date_due']" position="after">
+                    <field name="paid_amount" sum="Amount"/>
+                    <field name="sh_paid_amount_for_commision"/>
+                    <field name="team_leader_eighty_percent" string="Leader %"/>
+                    <field name="team_leader_eighty_percent_commission_value" string="Leader Commission" sum="Amount"/>
+<!--                    <field name="sale_person_eighty_percent" string="Sales Person %"/>-->
+<!--                    <field name="sale_person_eighty_percent_commission_value" string="Person Commission" />-->
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_invoice_hundred_commission_tree" model="ir.ui.view">
+            <field name="name">account.invoice.hundred.commission.tree</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_invoice_tree"/>
+            <field name="mode">primary</field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="attributes">
+                    <attribute name="string">Name(100)</attribute>
+                </xpath>
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="invoice_partner_display_name" string="Customer"/>
+                    <field name="invoice_date" string="Invoice Date"/>
+                </xpath>
+                <xpath expr="//field[@name='invoice_origin']" position="after">
+                    <field name="team_id" />
+                    <field name="team_leader" />
+                    <field name="invoice_user_id" />
+                </xpath>
+                <xpath expr="//field[@name='amount_untaxed_signed']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='state']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='invoice_date_due']" position="after">
+                    <field name="paid_amount" sum="Amount"/>
+                    <field name="sh_paid_amount_for_commision"/>
+                    <field name="team_leader_hundred_percent" string="Leader %"/>
+                    <field name="team_leader_hundred_percent_commission_value" string="Leader Commission" sum="Amount"/>
+<!--                    <field name="sale_person_hundred_percent" string="Sales Person %"/>-->
+<!--                    <field name="sale_person_hundred_percent_commission_value" string="Person Commission" />-->
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_invoice_sale_person_eighty_commission_tree" model="ir.ui.view">
+            <field name="name">account.invoice.eighty.commission.tree</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_invoice_tree"/>
+            <field name="mode">primary</field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="attributes">
+                    <attribute name="string">Name(80)</attribute>
+                </xpath>
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="invoice_partner_display_name" string="Customer"/>
+                    <field name="invoice_date" string="Invoice Date"/>
+                </xpath>
+                <xpath expr="//field[@name='invoice_origin']" position="after">
+                    <field name="team_id" />
+                    <field name="team_leader" />
+                    <field name="invoice_user_id" />
+                </xpath>
+                <xpath expr="//field[@name='amount_untaxed_signed']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='state']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='invoice_date_due']" position="after">
+                    <field name="paid_amount" sum="Amount"/>
+                    <field name="sh_paid_amount_for_commision"/>
+<!--                    <field name="team_leader_eighty_percent" string="Leader %"/>-->
+<!--                    <field name="team_leader_eighty_percent_commission_value" string="Leader Commission" sum="Amount"/>-->
+                    <field name="sale_person_eighty_percent" string="Sales Person %"/>
+                    <field name="sale_person_eighty_percent_commission_value" string="Person Commission" />
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_invoice_sale_person_hundred_commission_tree" model="ir.ui.view">
+            <field name="name">account.invoice.hundred.commission.tree</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_invoice_tree"/>
+            <field name="mode">primary</field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="attributes">
+                    <attribute name="string">Name(100)</attribute>
+                </xpath>
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="invoice_partner_display_name" string="Customer"/>
+                    <field name="invoice_date" string="Invoice Date"/>
+                </xpath>
+                <xpath expr="//field[@name='invoice_origin']" position="after">
+                    <field name="team_id" />
+                    <field name="team_leader" />
+                    <field name="invoice_user_id" />
+                </xpath>
+                <xpath expr="//field[@name='amount_untaxed_signed']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='state']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='invoice_date_due']" position="after">
+                    <field name="paid_amount" sum="Amount"/>
+                    <field name="sh_paid_amount_for_commision"/>
+<!--                    <field name="team_leader_hundred_percent" string="Leader %"/>-->
+<!--                    <field name="team_leader_hundred_percent_commission_value" string="Leader Commission" sum="Amount"/>-->
+                    <field name="sale_person_hundred_percent" string="Sales Person %"/>
+                    <field name="sale_person_hundred_percent_commission_value" string="Person Commission" />
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_invoice_deduction_tree" model="ir.ui.view">
+            <field name="name">account.invoice.deduction.tree</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_invoice_tree"/>
+            <field name="mode">primary</field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="attributes">
+                    <attribute name="string">Name(-)</attribute>
+                </xpath>
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="invoice_partner_display_name" string="Customer"/>
+                    <field name="invoice_date" string="Invoice Date"/>
+                </xpath>
+                <xpath expr="//field[@name='invoice_origin']" position="after">
+                    <field name="team_id" />
+                    <field name="team_leader" />
+                    <field name="invoice_user_id" />
+                </xpath>
+                <xpath expr="//field[@name='amount_untaxed_signed']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='state']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='amount_total_signed']" position="after">
+                    <field name="paid_amount" sum="Amount"/>
+                    <field name="sale_person_deduction" string="Deduction"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="sh_leader_eighty_commission_form_view" model="ir.ui.view">
+			<field name="name">sh.sale.commision.model</field>
+			<field name="model">sh.sale.commision.model</field>
+			<field name="arch" type="xml">
+				<form string="Commisions" create="0" edit="0">
+					<group>
+						<group>
+							<field name="type" invisible="1"/>
+							<field name="invoice_ref"/>
+							<field name="partner_id"/>
+							<field name="invoice_date"/>
+							<field name="source_document"/>
+							<field name="team_id"/>
+							<field name="team_leader"/>
+						</group>
+						<group>
+							<field name="user_id"/>
+							<field name="company_id"/>
+							<field name="due_date"/>
+							<field name="payment_date"/>
+							<field name="payment_amount"/>
+							<field name="leader_eighty_percentage" attrs="{'invisible':[('type','=','deduction')]}"/>
+							<field name="leder_eighty_commission_amount" attrs="{'invisible':[('type','=','deduction')]}"/>
+							<field name="invoice_total"/>
+						</group>
+					</group>
+				</form>
+			</field>
+		</record>
+        <record id="sh_leader_commission_eighty_tree_view" model="ir.ui.view">
+			<field name="name">sh.sale.commision.model</field>
+			<field name="model">sh.sale.commision.model</field>
+			<field name="arch" type="xml">
+				<tree string="Commision" create="0" edit="0">
+					<field name="type" invisible="1"/>
+					<field name="invoice_ref" string="Name(80)"/>
+					<field name="partner_id"/>
+					<field name="invoice_date"/>
+					<field name="source_document"/>
+					<field name="team_id"/>
+					<field name="team_leader"/>
+					<field name="user_id"/>
+					<field name="company_id"/>
+					<field name="due_date"/>
+					<field name="payment_date"/>
+					<field name="payment_amount" sum="Payment Amount"/>
+					<field name="leader_eighty_percentage" attrs="{'invisible':[('type','=','deduction')]}" sum="Percentage"/>
+					<field name="leder_eighty_commission_amount" attrs="{'invisible':[('type','=','deduction')]}" sum="Commision Amount"/>
+					<field name="invoice_total" sum="Total"/>
+				</tree>
+			</field>
+		</record>
+		<record id="sh_leader_hundred_commission_form_view" model="ir.ui.view">
+			<field name="name">sh.sale.commision.model</field>
+			<field name="model">sh.sale.commision.model</field>
+			<field name="arch" type="xml">
+				<form string="Commisions" create="0" edit="0">
+					<group>
+						<group>
+							<field name="type" invisible="1"/>
+							<field name="invoice_ref"/>
+							<field name="partner_id"/>
+							<field name="invoice_date"/>
+							<field name="source_document"/>
+							<field name="team_id"/>
+							<field name="team_leader"/>
+						</group>
+						<group>
+							<field name="user_id"/>
+							<field name="company_id"/>
+							<field name="due_date"/>
+							<field name="payment_date"/>
+							<field name="payment_amount"/>
+							<field name="leader_hundred_percentage" attrs="{'invisible':[('type','=','deduction')]}"/>
+							<field name="leder_hundred_commission_amount" attrs="{'invisible':[('type','=','deduction')]}"/>
+							<field name="invoice_total"/>
+						</group>
+					</group>
+				</form>
+			</field>
+		</record>
+        <record id="sh_leader_commission_hundred_tree_view" model="ir.ui.view">
+			<field name="name">sh.sale.commision.model</field>
+			<field name="model">sh.sale.commision.model</field>
+			<field name="arch" type="xml">
+				<tree string="Commision" create="0" edit="0">
+					<field name="type" invisible="1"/>
+					<field name="invoice_ref" string="Name(100)"/>
+					<field name="partner_id"/>
+					<field name="invoice_date"/>
+					<field name="source_document"/>
+					<field name="team_id"/>
+					<field name="team_leader"/>
+					<field name="user_id"/>
+					<field name="company_id"/>
+					<field name="due_date"/>
+					<field name="payment_date"/>
+					<field name="payment_amount" sum="Payment Amount"/>
+					<field name="leader_hundred_percentage" attrs="{'invisible':[('type','=','deduction')]}" sum="Percentage"/>
+					<field name="leder_hundred_commission_amount" attrs="{'invisible':[('type','=','deduction')]}" sum="Commision Amount"/>
+					<field name="invoice_total" sum="Total"/>
+				</tree>
+			</field>
+		</record>
+		
+		<record id="sh_person_eighty_commission_form_view" model="ir.ui.view">
+			<field name="name">sh.sale.commision.model</field>
+			<field name="model">sh.sale.commision.model</field>
+			<field name="arch" type="xml">
+				<form string="Commisions" create="0" edit="0">
+					<group>
+						<group>
+							<field name="type" invisible="1"/>
+							<field name="invoice_ref"/>
+							<field name="partner_id"/>
+							<field name="invoice_date"/>
+							<field name="source_document"/>
+							<field name="team_id"/>
+							<field name="team_leader"/>
+						</group>
+						<group>
+							<field name="user_id"/>
+							<field name="company_id"/>
+							<field name="due_date"/>
+							<field name="payment_date"/>
+							<field name="payment_amount"/>
+							<field name="saleperson_eighty_percentage" attrs="{'invisible':[('type','=','deduction')]}"/>
+							<field name="saleperson_eighty_commission_amount" attrs="{'invisible':[('type','=','deduction')]}"/>
+							<field name="invoice_total"/>
+						</group>
+					</group>
+				</form>
+			</field>
+		</record>
+        <record id="sh_person_commission_eighty_tree_view" model="ir.ui.view">
+			<field name="name">sh.sale.commision.model</field>
+			<field name="model">sh.sale.commision.model</field>
+			<field name="arch" type="xml">
+				<tree string="Commision" create="0" edit="0">
+					<field name="type" invisible="1"/>
+					<field name="invoice_ref" string="Name(80)"/>
+					<field name="partner_id"/>
+					<field name="invoice_date"/>
+					<field name="source_document"/>
+					<field name="team_id"/>
+					<field name="team_leader"/>
+					<field name="user_id"/>
+					<field name="company_id"/>
+					<field name="due_date"/>
+					<field name="payment_date"/>
+					<field name="payment_amount" sum="Payment Amount"/>
+					<field name="saleperson_eighty_percentage" attrs="{'invisible':[('type','=','deduction')]}" sum="Percentage"/>
+					<field name="saleperson_eighty_commission_amount" attrs="{'invisible':[('type','=','deduction')]}" sum="Commision Amount"/>
+					<field name="invoice_total" sum="Total"/>
+				</tree>
+			</field>
+		</record>
+		<record id="sh_person_hundred_commission_form_view" model="ir.ui.view">
+			<field name="name">sh.sale.commision.model</field>
+			<field name="model">sh.sale.commision.model</field>
+			<field name="arch" type="xml">
+				<form string="Commisions" create="0" edit="0">
+					<group>
+						<group>
+							<field name="type" invisible="1"/>
+							<field name="invoice_ref"/>
+							<field name="partner_id"/>
+							<field name="invoice_date"/>
+							<field name="source_document"/>
+							<field name="team_id"/>
+							<field name="team_leader"/>
+						</group>
+						<group>
+							<field name="user_id"/>
+							<field name="company_id"/>
+							<field name="due_date"/>
+							<field name="payment_date"/>
+							<field name="payment_amount"/>
+							<field name="saleperson_hundred_percentage" attrs="{'invisible':[('type','=','deduction')]}"/>
+							<field name="saleperson_hundred_commission_amount" attrs="{'invisible':[('type','=','deduction')]}"/>
+							<field name="invoice_total"/>
+						</group>
+					</group>
+				</form>
+			</field>
+		</record>
+        <record id="sh_person_commission_hundred_tree_view" model="ir.ui.view">
+			<field name="name">sh.sale.commision.model</field>
+			<field name="model">sh.sale.commision.model</field>
+			<field name="arch" type="xml">
+				<tree string="Commision" create="0" edit="0">
+					<field name="type" invisible="1"/>
+					<field name="invoice_ref" string="Name(100)"/>
+					<field name="partner_id"/>
+					<field name="invoice_date"/>
+					<field name="source_document"/>
+					<field name="team_id"/>
+					<field name="team_leader"/>
+					<field name="user_id"/>
+					<field name="company_id"/>
+					<field name="due_date"/>
+					<field name="payment_date"/>
+					<field name="payment_amount" sum="Payment Amount"/>
+					<field name="saleperson_hundred_percentage" attrs="{'invisible':[('type','=','deduction')]}" sum="Percentage"/>
+					<field name="saleperson_hundred_commission_amount" attrs="{'invisible':[('type','=','deduction')]}" sum="Commision Amount"/>
+					<field name="invoice_total" sum="Total"/>
+				</tree>
+			</field>
+		</record>
+		
+		
+		<record id="sh_leader_deduction_form_view" model="ir.ui.view">
+			<field name="name">sh.sale.commision.model</field>
+			<field name="model">sh.sale.commision.model</field>
+			<field name="arch" type="xml">
+				<form string="Deductions" create="0" edit="0">
+					<group>
+						<group>
+							<field name="type" invisible="1"/>
+							<field name="invoice_ref"/>
+							<field name="partner_id"/>
+							<field name="invoice_date"/>
+							<field name="source_document"/>
+							<field name="team_id"/>
+							<field name="team_leader"/>
+						</group>
+						<group>
+							<field name="user_id"/>
+							<field name="company_id"/>
+							<field name="due_date"/>
+							<field name="payment_date"/>
+							<field name="payment_amount"/>
+							<field name="deduction_amount" attrs="{'invisible':[('type','=','commission')]}"/>
+							<field name="invoice_total"/>
+						</group>
+					</group>
+				</form>
+			</field>
+		</record>
+		<record id="sh_leader_deduction_tree_view" model="ir.ui.view">
+			<field name="name">sh.sale.commision.model</field>
+			<field name="model">sh.sale.commision.model</field>
+			<field name="arch" type="xml">
+				<tree string="Deductions" create="0" edit="0">
+					<field name="type" invisible="1"/>
+					<field name="invoice_ref"/>
+					<field name="partner_id"/>
+					<field name="invoice_date"/>
+					<field name="source_document"/>
+					<field name="team_id"/>
+					<field name="team_leader"/>
+					<field name="user_id"/>
+					<field name="company_id"/>
+					<field name="due_date"/>
+					<field name="payment_date"/>
+					<field name="payment_amount" sum="Payment Amount"/>
+					<field name="deduction_amount" attrs="{'invisible':[('type','=','commission')]}" sum="Deduction"/>
+					<field name="invoice_total" sum="Total"/>
+				</tree>
+			</field>
+		</record>
+		
+		<record id="sh_person_deduction_form_view" model="ir.ui.view">
+			<field name="name">sh.sale.commision.model</field>
+			<field name="model">sh.sale.commision.model</field>
+			<field name="arch" type="xml">
+				<form string="Deductions" create="0" edit="0">
+					<group>
+						<group>
+							<field name="type" invisible="1"/>
+							<field name="invoice_ref"/>
+							<field name="partner_id"/>
+							<field name="invoice_date"/>
+							<field name="source_document"/>
+							<field name="team_id"/>
+							<field name="team_leader"/>
+						</group>
+						<group>
+							<field name="user_id"/>
+							<field name="company_id"/>
+							<field name="due_date"/>
+							<field name="payment_date"/>
+							<field name="payment_amount"/>
+							<field name="deduction_amount" attrs="{'invisible':[('type','=','commission')]}"/>
+							<field name="invoice_total"/>
+						</group>
+					</group>
+				</form>
+			</field>
+		</record>
+		<record id="sh_person_deduction_tree_view" model="ir.ui.view">
+			<field name="name">sh.sale.commision.model</field>
+			<field name="model">sh.sale.commision.model</field>
+			<field name="arch" type="xml">
+				<tree string="Deductions" create="0" edit="0">
+					<field name="type" invisible="1"/>
+					<field name="invoice_ref"/>
+					<field name="partner_id"/>
+					<field name="invoice_date"/>
+					<field name="source_document"/>
+					<field name="team_id"/>
+					<field name="team_leader"/>
+					<field name="user_id"/>
+					<field name="company_id"/>
+					<field name="due_date"/>
+					<field name="payment_date"/>
+					<field name="payment_amount" sum="Payment Amount"/>
+					<field name="deduction_amount" attrs="{'invisible':[('type','=','commission')]}" sum="Deduction"/>
+					<field name="invoice_total" sum="Total"/>
+				</tree>
+			</field>
+		</record>
+		
+		
+        <record id="sh_leader_commission_hundred_tree_view" model="ir.ui.view">
+			<field name="name">sh.sale.commision.model</field>
+			<field name="model">sh.sale.commision.model</field>
+			<field name="arch" type="xml">
+				<tree string="Commision" create="0" edit="0">
+					<field name="type" invisible="1"/>
+					<field name="invoice_ref" string="Name(100)"/>
+					<field name="partner_id"/>
+					<field name="invoice_date"/>
+					<field name="source_document"/>
+					<field name="team_id"/>
+					<field name="team_leader"/>
+					<field name="user_id"/>
+					<field name="company_id"/>
+					<field name="due_date"/>
+					<field name="payment_date"/>
+					<field name="payment_amount" sum="Payment Amount"/>
+					<field name="leader_hundred_percentage" attrs="{'invisible':[('type','=','deduction')]}" sum="Percentage"/>
+					<field name="leder_hundred_commission_amount" attrs="{'invisible':[('type','=','deduction')]}" sum="Commision Amount"/>
+					<field name="invoice_total" sum="Total"/>
+				</tree>
+			</field>
+		</record>
+    </data>
+</odoo>
