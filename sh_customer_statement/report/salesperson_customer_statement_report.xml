@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="sh_spc_statement_report_doc">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <div class="oe_structure" />
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="text-center">
+                                <b>
+                                    <span t-esc="date_start" />
+                                    To
+                                    <span t-esc="date_end" />
+                                </b>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <t t-if="customer_statement_dic">
+                        <t t-foreach="customer_statement_dic.keys()" t-as="statement">
+                            <center>
+                                <b>
+                                    <span t-esc="statement" />
+                                </b>
+                            </center>
+
+                            <table class="table table-sm o_main_table">
+                                <thead style="display: table-row-group;">
+                                    <tr>
+                                        <th>Number</th>
+                                        <th>Account</th>
+                                        <th>Date</th>
+                                        <th>Due Date</th>
+                                        <th>Total Amount</th>
+                                        <th>Paid Amount</th>
+                                        <th>Balance</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="sale_tbody">
+                                    <t t-set="amount" t-value="0.0" />
+                                    <t t-set="paid_amount" t-value="0.0" />
+                                    <t t-set="balance" t-value="0.0" />
+                                    <t t-foreach="customer_statement_dic[statement]" t-as="line">
+                                        <t t-set="amount" t-value="amount+line.get('sh_customer_amount')" />
+                                        <t t-set="paid_amount" t-value="paid_amount+line.get('sh_customer_paid_amount')" />
+                                        <t t-set="balance" t-value="balance+line.get('sh_customer_balance')" />
+                                        <t t-if="sh_report_type == 'customer_invoice'">
+                                            <t
+                                                t-if="line.get('sh_customer_amount') == line.get('sh_customer_balance') and line.get('sh_customer_balance') &gt; 0.0 or line.get('sh_customer_amount') == line.get('sh_customer_balance') and line.get('sh_customer_balance') &lt; 0.0"
+                                            >
+                                                <tr style="color: #0a8ea4;">
+                                                    <td><span t-esc="line.get('name')" /></td>
+                                                    <td><span t-esc="line.get('sh_account')" /></td>
+                                                    <td><span t-esc="line.get('sh_customer_invoice_date')" /></td>
+                                                    <td><span t-esc="line.get('sh_customer_due_date')" /></td>
+                                                    <td><span t-esc="line.get('currency_id')" /><span t-esc="line.get('sh_customer_amount')" /></td>
+                                                    <td><span t-esc="line.get('currency_id')" /><span t-esc="line.get('sh_customer_paid_amount')" /></td>
+                                                    <td><span t-esc="line.get('currency_id')" /><span t-esc="line.get('sh_customer_balance')" /></td>
+                                                </tr>
+                                            </t>
+                                            <t t-if="line.get('sh_customer_balance') == 0.0">
+                                                <tr style="color: green;">
+                                                    <td><span t-esc="line.get('name')" /></td>
+                                                    <td><span t-esc="line.get('sh_account')" /></td>
+                                                    <td><span t-esc="line.get('sh_customer_invoice_date')" /></td>
+                                                    <td><span t-esc="line.get('sh_customer_due_date')" /></td>
+                                                    <td><span t-esc="line.get('currency_id')" /><span t-esc="line.get('sh_customer_amount')" /></td>
+                                                    <td><span t-esc="line.get('currency_id')" /><span t-esc="line.get('sh_customer_paid_amount')" /></td>
+                                                    <td><span t-esc="line.get('currency_id')" /><span t-esc="line.get('sh_customer_balance')" /></td>
+                                                </tr>
+                                            </t>
+                                            <t
+                                                t-if="line.get('sh_customer_amount') != line.get('sh_customer_balance') and line.get('sh_customer_balance') &gt; 0.0 or line.get('sh_customer_amount') != line.get('sh_customer_balance') and line.get('sh_customer_balance') &lt; 0.0"
+                                            >
+                                                <tr style="color: red;">
+                                                    <td><span t-esc="line.get('name')" /></td>
+                                                    <td><span t-esc="line.get('sh_account')" /></td>
+                                                    <td><span t-esc="line.get('sh_customer_invoice_date')" /></td>
+                                                    <td><span t-esc="line.get('sh_customer_due_date')" /></td>
+                                                    <td><span t-esc="line.get('currency_id')" /><span t-esc="line.get('sh_customer_amount')" /></td>
+                                                    <td><span t-esc="line.get('currency_id')" /><span t-esc="line.get('sh_customer_paid_amount')" /></td>
+                                                    <td><span t-esc="line.get('currency_id')" /><span t-esc="line.get('sh_customer_balance')" /></td>
+                                                </tr>
+                                            </t>
+                                        </t>
+                                        <t t-if="sh_report_type == 'customer_overdue_invoice'">
+                                            <tr style="color: red;">
+                                                <td><span t-esc="line.get('name')" /></td>
+                                                <td><span t-esc="line.get('sh_account')" /></td>
+                                                <td><span t-esc="line.get('sh_customer_invoice_date')" /></td>
+                                                <td><span t-esc="line.get('sh_customer_due_date')" /></td>
+                                                <td><span t-esc="line.get('currency_id')" /><span t-esc="line.get('sh_customer_amount')" /></td>
+                                                <td><span t-esc="line.get('currency_id')" /><span t-esc="line.get('sh_customer_paid_amount')" /></td>
+                                                <td><span t-esc="line.get('currency_id')" /><span t-esc="line.get('sh_customer_balance')" /></td>
+                                            </tr>
+                                        </t>
+                                    </t>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td>
+                                            <b><span t-esc="'%.2f'%amount" /></b>
+                                        </td>
+                                        <td>
+                                            <b><span t-esc="'%.2f'%paid_amount" /></b>
+                                        </td>
+                                        <td>
+                                            <b><span t-esc="'%.2f'%balance" /></b>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <t t-if="sh_report_type == 'customer_invoice'">
+                                <table class="table table-sm o_main_table">
+                                    <thead style="display: table-row-group;">
+                                        <tr>
+                                            <th>Gap Between Days</th>
+                                            <th>0-30(Days)</th>
+                                            <th>30-60(Days)</th>
+                                            <th>60-90(Days)</th>
+                                            <th>90+(Days)</th>
+                                            <th>Total</th>
+                                        </tr>
+                                        <t t-foreach="customer_statement_aging_dic[statement]" t-as="line">
+                                            <t t-set="total" t-value="line.get('sh_customer_zero_to_thiry') + line.get('sh_customer_thirty_to_sixty') + line.get('sh_customer_sixty_to_ninety') + line.get('sh_customer_ninety_plus')" />
+                                            <tr>
+                                                <td><strong>Balance Amount</strong></td>
+                                                <td><t t-esc="'%.2f'%line.get('sh_customer_zero_to_thiry')" /></td>
+                                                <td><t t-esc="'%.2f'%line.get('sh_customer_thirty_to_sixty')" /></td>
+                                                <td><t t-esc="'%.2f'%line.get('sh_customer_sixty_to_ninety')" /></td>
+                                                <td><t t-esc="'%.2f'%line.get('sh_customer_ninety_plus')" /></td>
+                                                <td><t t-esc="'%.2f'%total" /></td>
+                                            </tr>
+                                        </t>
+                                    </thead>
+                                </table>
+                            </t>
+                        </t>
+                        <br />
+                        <br />
+                    </t>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <record id="paperformat_spc_statement_report" model="report.paperformat">
+        <field name="name">Salesperson Own Customer Statement</field>
+        <field name="default" eval="True" />
+        <field name="format">A4</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">65</field>
+        <field name="margin_bottom">30</field>
+        <field name="margin_left">7</field>
+        <field name="margin_right">7</field>
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">60</field>
+        <field name="dpi">90</field>
+    </record>
+    <record id="sh_salesperson_customer_statement_report" model="ir.actions.report">
+        <field name="name">Salesperson Own Customer Statement</field>
+        <field name="model">report.sh_customer_statement.sh_spc_statement_report_doc</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">sh_customer_statement.sh_spc_statement_report_doc</field>
+        <field name="print_report_name">'Salesperson Own Customer Statement'</field>
+        <field name="paperformat_id" ref="sh_customer_statement.paperformat_spc_statement_report" />
+    </record>
+</odoo>
