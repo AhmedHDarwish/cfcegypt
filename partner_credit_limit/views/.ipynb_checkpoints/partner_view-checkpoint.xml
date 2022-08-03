@@ -8,8 +8,8 @@
         <field name="inherit_id" ref="account.view_partner_property_form"/>
         <field name="arch" type="xml">
             <field name="property_account_payable_id" position="after">
-                <field name="credit_limit_actual"/>
-                <field name="credit_limit" readonly = '1'/>
+                <field name="credit_limit_actual" string = 'Credit limit'/>
+                <field name="credit_limit" readonly = '1' string = 'Credit limit usage'/>
                 <field name="over_credit"/>
                 <field name='credit_days'/>
                 <field name='over_credit_days'/>
