@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="sh_customer_filter_statement_mail_template" model="mail.template">
+		<field name="name">Customer Statement By Date: Send by email</field>
+        <field name="model_id" ref="base.model_res_partner"/>
+        <field name="email_from">${object.company_id.partner_id.email_formatted |safe}</field>
+        <field name="partner_to">${object.id}</field>
+        <field name="subject">Customer Account Statement from ${object.company_id.name} - ${object.name}</field>
+        <field name="auto_delete" eval="False"/>
+        <field name="report_template" ref="sh_customer_statement.action_report_sh_customer_filtered_statement"/>
+        <field name="report_name">Customer Account Statement By Date</field>
+        <field name="body_html" type="html">
+        	<div style="margin: 0px; padding: 0px;">
+        		<table border="0" width="100%" cellpadding="0" bgcolor="#ededed" style="padding: 20px; background-color: #ededed; border-collapse:separate;" summary="o_mail_notification">
+                    <tbody>
+                      <!-- HEADER -->
+                      <tr>
+                        <td align="center" style="min-width: 590px;">
+                          <table width="590" border="0" cellpadding="0" bgcolor="#875A7B" style="min-width: 590px; background-color: rgb(135,90,123); padding: 20px; border-collapse:separate;">
+                            <tr>
+                              <td valign="middle">
+                                  <span style="font-size:20px; color:white; font-weight: bold;">
+                                      Customer Statement By Date
+                                  </span>
+                              </td>
+                              <td valign="middle" align="right">
+                                  <img src="/logo.png?company=${object.company_id.id}" style="padding: 0px; margin: 0px; height: auto; width: 80px;" alt="${object.company_id.name}"/>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+
+                      <!-- CONTENT -->
+                      <tr>
+                        <td align="center" style="min-width: 590px;">
+                          <table width="590" border="0" cellpadding="0" bgcolor="#ffffff" style="min-width: 590px; background-color: rgb(255, 255, 255); padding: 20px; border-collapse:separate;">
+                            <tbody>
+                              <td valign="top" style="font-family:Arial,Helvetica,sans-serif; color: #555; font-size: 14px;">
+                                <p style="margin: 0px; padding: 0px; font-size: 13px;">
+							    	Dear ${object.name},
+									<br/>
+									We have attached your account statement.
+									<br/>
+									Download your statement.
+									<br/>
+									If you have any concern regarding statement then feel free to contact us.
+									<br/>
+							    </p>
+                              </td>
+                            </tbody>
+                          </table>
+                        </td>
+                      </tr>
+
+                      <!-- FOOTER -->
+                      <tr>
+                        <td align="center" style="min-width: 590px;">
+                          <table width="590" border="0" cellpadding="0" bgcolor="#875A7B" style="min-width: 590px; background-color: rgb(135,90,123); padding: 20px; border-collapse:separate;">
+                            <tr>
+                              <td valign="middle" align="left" style="color: #fff; padding-top: 10px; padding-bottom: 10px; font-size: 12px;">
+                                ${object.company_id.name}<br/>
+                                ${object.company_id.phone or ''}
+                              </td>
+                              <td valign="middle" align="right" style="color: #fff; padding-top: 10px; padding-bottom: 10px; font-size: 12px;">
+                                % if object.company_id.email:
+                                <a href="mailto:${object.company_id.email}" style="text-decoration:none; color: white;">${object.company_id.email}</a><br/>
+                                % endif
+                                % if object.company_id.website:
+                                    <a href="${object.company_id.website}" style="text-decoration:none; color: white;">
+                                        ${object.company_id.website}
+                                    </a>
+                                % endif
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </tbody>
+                </table>
+        	</div>
+        </field>
+	</record>
+	<record id="sh_customer_statement_mail_template" model="mail.template">
+		<field name="name">Customer Statement: Send by email</field>
+        <field name="model_id" ref="base.model_res_partner"/>
+        <field name="email_from">${object.company_id.partner_id.email_formatted |safe}</field>
+        <field name="partner_to">${object.id}</field>
+        <field name="subject">Customer Account Statement from ${object.company_id.name} - ${object.name}</field>
+        <field name="auto_delete" eval="False"/>
+        <field name="report_template" ref="sh_customer_statement.action_report_sh_customer_statement"/>
+        <field name="report_name">Customer Account Statement</field>
+        <field name="body_html" type="html">
+        	<div style="margin: 0px; padding: 0px;">
+        		<table border="0" width="100%" cellpadding="0" bgcolor="#ededed" style="padding: 20px; background-color: #ededed; border-collapse:separate;" summary="o_mail_notification">
+                    <tbody>
+                      <!-- HEADER -->
+                      <tr>
+                        <td align="center" style="min-width: 590px;">
+                          <table width="590" border="0" cellpadding="0" bgcolor="#875A7B" style="min-width: 590px; background-color: rgb(135,90,123); padding: 20px; border-collapse:separate;">
+                            <tr>
+                              <td valign="middle">
+                                  <span style="font-size:20px; color:white; font-weight: bold;">
+                                      Customer Statement
+                                  </span>
+                              </td>
+                              <td valign="middle" align="right">
+                                  <img src="/logo.png?company=${object.company_id.id}" style="padding: 0px; margin: 0px; height: auto; width: 80px;" alt="${object.company_id.name}"/>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+
+                      <!-- CONTENT -->
+                      <tr>
+                        <td align="center" style="min-width: 590px;">
+                          <table width="590" border="0" cellpadding="0" bgcolor="#ffffff" style="min-width: 590px; background-color: rgb(255, 255, 255); padding: 20px; border-collapse:separate;">
+                            <tbody>
+                              <td valign="top" style="font-family:Arial,Helvetica,sans-serif; color: #555; font-size: 14px;">
+                                <p style="margin: 0px; padding: 0px; font-size: 13px;">
+							    	Dear ${object.name},
+									<br/>
+									We have attached your account statement.
+									<br/>
+									Download your statement.
+									<br/>
+									If you have any concern regarding statement then feel free to contact us.
+									<br/>
+									<br/>
+							    </p>
+                              </td>
+                            </tbody>
+                          </table>
+                        </td>
+                      </tr>
+
+                      <!-- FOOTER -->
+                      <tr>
+                        <td align="center" style="min-width: 590px;">
+                          <table width="590" border="0" cellpadding="0" bgcolor="#875A7B" style="min-width: 590px; background-color: rgb(135,90,123); padding: 20px; border-collapse:separate;">
+                            <tr>
+                              <td valign="middle" align="left" style="color: #fff; padding-top: 10px; padding-bottom: 10px; font-size: 12px;">
+                                ${object.company_id.name}<br/>
+                                ${object.company_id.phone or ''}
+                              </td>
+                              <td valign="middle" align="right" style="color: #fff; padding-top: 10px; padding-bottom: 10px; font-size: 12px;">
+                                % if object.company_id.email:
+                                <a href="mailto:${object.company_id.email}" style="text-decoration:none; color: white;">${object.company_id.email}</a><br/>
+                                % endif
+                                % if object.company_id.website:
+                                    <a href="${object.company_id.website}" style="text-decoration:none; color: white;">
+                                        ${object.company_id.website}
+                                    </a>
+                                % endif
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </tbody>
+                </table>
+        	</div>
+        </field>
+	</record>
+	<record id="sh_customer_due_statement_mail_template" model="mail.template">
+		<field name="name">Customer Overdue Statement: Send by email</field>
+        <field name="model_id" ref="base.model_res_partner"/>
+        <field name="email_from">${object.company_id.partner_id.email_formatted |safe}</field>
+        <field name="partner_to">${object.id}</field>
+        <field name="subject">Customer Account Overdue Statement from ${object.company_id.name} - ${object.name}</field>
+        <field name="auto_delete" eval="False"/>
+        <field name="report_template" ref="sh_customer_statement.action_report_sh_customer_due_statement"/>
+        <field name="report_name">Customer Account Overdue Statement</field>
+        <field name="body_html" type="html">
+        	<div style="margin: 0px; padding: 0px;">
+        		<table border="0" width="100%" cellpadding="0" bgcolor="#ededed" style="padding: 20px; background-color: #ededed; border-collapse:separate;" summary="o_mail_notification">
+                    <tbody>
+                      <!-- HEADER -->
+                      <tr>
+                        <td align="center" style="min-width: 590px;">
+                          <table width="590" border="0" cellpadding="0" bgcolor="#875A7B" style="min-width: 590px; background-color: rgb(135,90,123); padding: 20px; border-collapse:separate;">
+                            <tr>
+                              <td valign="middle">
+                                  <span style="font-size:20px; color:white; font-weight: bold;">
+                                      Customer Overdue Statement
+                                  </span>
+                              </td>
+                              <td valign="middle" align="right">
+                                  <img src="/logo.png?company=${object.company_id.id}" style="padding: 0px; margin: 0px; height: auto; width: 80px;" alt="${object.company_id.name}"/>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+
+                      <!-- CONTENT -->
+                      <tr>
+                        <td align="center" style="min-width: 590px;">
+                          <table width="590" border="0" cellpadding="0" bgcolor="#ffffff" style="min-width: 590px; background-color: rgb(255, 255, 255); padding: 20px; border-collapse:separate;">
+                            <tbody>
+                              <td valign="top" style="font-family:Arial,Helvetica,sans-serif; color: #555; font-size: 14px;">
+                                <p style="margin: 0px; padding: 0px; font-size: 13px;">
+							    	Dear ${object.name},
+									<br/>
+									We have attached your account overdue statement.
+									<br/>
+									Please clear of your overdue payments as soon as possible.
+									<br/>
+									Download your overdue statement.
+									<br/>
+									If you have any concern regarding overdue statement then feel free to contact us.
+									<br/>
+									<br/>
+							    </p>
+                              </td>
+                            </tbody>
+                          </table>
+                        </td>
+                      </tr>
+
+                      <!-- FOOTER -->
+                      <tr>
+                        <td align="center" style="min-width: 590px;">
+                          <table width="590" border="0" cellpadding="0" bgcolor="#875A7B" style="min-width: 590px; background-color: rgb(135,90,123); padding: 20px; border-collapse:separate;">
+                            <tr>
+                              <td valign="middle" align="left" style="color: #fff; padding-top: 10px; padding-bottom: 10px; font-size: 12px;">
+                                ${object.company_id.name}<br/>
+                                ${object.company_id.phone or ''}
+                              </td>
+                              <td valign="middle" align="right" style="color: #fff; padding-top: 10px; padding-bottom: 10px; font-size: 12px;">
+                                % if object.company_id.email:
+                                <a href="mailto:${object.company_id.email}" style="text-decoration:none; color: white;">${object.company_id.email}</a><br/>
+                                % endif
+                                % if object.company_id.website:
+                                    <a href="${object.company_id.website}" style="text-decoration:none; color: white;">
+                                        ${object.company_id.website}
+                                    </a>
+                                % endif
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </tbody>
+                </table>
+        	</div>
+        </field>
+	</record>
+</odoo>

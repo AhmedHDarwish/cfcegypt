@@ -76,6 +76,7 @@ class PartnerXlsx(models.AbstractModel):
         """
         line : account.move.line
         """
+        coff =  -1 if line.move_id.move_type == 'out_refund' else 1
         date = datetime.strftime(line.move_id.invoice_date, "%Y-%m-%d")
         sheet.write(row,0,line.move_id.team_id.name,formats['normal_format'])
         sheet.write(row,1,line.move_id.invoice_user_id.name,formats['normal_format'])
@@ -89,7 +90,7 @@ class PartnerXlsx(models.AbstractModel):
         sheet.write(row,9,line.quantity,formats['normal_format'])
         sheet.write(row,10,line.get_delivery_qty(),formats['normal_format'])
         sheet.write(row,11,line.get_value_without_tax(),formats['normal_format'])
-        sheet.write(row,12,line.convert_to_egp(line.price_unit),formats['normal_format'])
+        sheet.write(row,12,coff * line.convert_to_egp(line.price_unit),formats['normal_format'])
         if self.can_see_cost_analysis():
             cost = line.product_id.standard_price or line.product_id.lst_price
             sheet.write(row,13,cost,formats['normal_format'])
